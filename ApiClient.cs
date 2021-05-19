@@ -39,7 +39,7 @@ namespace Employex
 
         public dynamic GetFirstJobOffer()
         {
-            var request = new RestRequest($"/job_offers?page=466", Method.GET);
+            var request = new RestRequest($"/job_offers?page=1", Method.GET);
             var response = client.Execute(request);
             if (response.IsSuccessful)
             {
