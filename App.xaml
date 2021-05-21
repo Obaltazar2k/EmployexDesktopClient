@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Employex"
              xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             StartupUri="View/TestAPI.xaml">
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
             <ResourceDictionary.MergedDictionaries>
@@ -36,6 +36,14 @@
                 <Setter Property="materialDesign:HintAssist.Foreground" Value="#004AAD"/>
                 <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
                 <Setter Property="BorderBrush" Value="#FFFFFF"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+            </Style>
+
+            <Style x:Key="TextBoxAlternative" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                <Setter Property="materialDesign:HintAssist.Foreground" Value="#FFFFFF"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#FFFFFF"/>
+                <Setter Property="BorderBrush" Value="#B5B4B4"/>
                 <Setter Property="Foreground" Value="#FFFFFF"/>
             </Style>
 

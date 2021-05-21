@@ -51,5 +51,20 @@ namespace Employex
                 return null;
             }
         }
+
+        public dynamic GetJobOffers()
+        {
+            var request = new RestRequest($"/job_offers?page=1", Method.GET);
+            var response = client.Execute(request);
+            if (response.IsSuccessful)
+            {
+                var result = JsonConvert.DeserializeObject<IEnumerable<JobOffer>>(response.Content);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

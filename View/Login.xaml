@@ -5,74 +5,80 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-          d:DesignHeight="450" d:DesignWidth="800"
-          Title="Iniciar sesión"
-      Background="#191626">
+          d:DesignHeight="600" d:DesignWidth="1080"
+          Title="Iniciar sesión" Background="White">
 
-    <Grid Margin="20 5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#004AAD" Offset="1" />
+                <GradientStop Color="#5CE1E6" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Height="530" VerticalAlignment="Top" CornerRadius="0 0 180 0"
+                Background="#191626">
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="450">
+                <Image Source="/Utilities/Images/Logo-Employex.png"
+                       VerticalAlignment="Bottom" Margin="40 120 40 30"/>
+            </StackPanel>
+            <StackPanel Width="650">
+                <StackPanel Margin="20 40">
+                    <TextBlock Text="L O G I N" Margin="20" Foreground="White"
+                               TextAlignment="Center" FontSize="60" FontFamily="Franklin Gothic" />
+                    <StackPanel Orientation="Horizontal" Margin="70 60 70 50" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="User" Width="30" Height="30"
+                                                 Foreground="{Binding ElementName=UserTextBox, Path=BorderBrush}"/>
+                        <TextBox
+                            x:Name="UserTextBox" materialDesign:HintAssist.Hint="Usuario"
+                            materialDesign:HintAssist.HelperTextFontSize="20"
+                            Style="{DynamicResource TextBox}"
+                            Margin="10 0" Width="350">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="70 0" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Password" Width="30" Height="30"
+                                                 Foreground="{Binding ElementName=PasswordTextBox, Path=BorderBrush}"/>
+                        <PasswordBox
+                            x:Name="PasswordTextBox" materialDesign:HintAssist.Hint="Contraseña"
+                            materialDesign:HintAssist.HelperTextFontSize="20"
+                            Style="{DynamicResource PasswordBox}"
+                            Margin="10 0" Width="350">
+                        </PasswordBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 60 0 0" HorizontalAlignment="Center">
+                        <Grid Width="350">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-        <Image Source="/Utilities/Images/Logo-Employex.png" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1"
-               Height="150" />
+                            <Button
+                                x:Name="LoginButton"
+                                Style="{DynamicResource PrimaryButton }"
+                                Height="40"
+                                Content="Iniciar sesión"
+                                Grid.Column="1"
+                                Click="LoginButton_Clicked"
+                                VerticalContentAlignment="Center" HorizontalAlignment="Center">
+                            </Button>
 
-        <TextBox
-            x:Name="UserTextBox" materialDesign:HintAssist.Hint="Usuario"
-            Style="{DynamicResource TextBox}"
-            Grid.Column="2" Grid.Row="3"
-            Grid.ColumnSpan="2"
-            VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-        </TextBox>
-
-        <materialDesign:PackIcon
-            Kind="Account"
-            Foreground="{Binding ElementName=UserTextBox, Path=BorderBrush}"
-            VerticalAlignment="Center" HorizontalAlignment="Right"
-            Grid.Column="1" Grid.Row="3" Margin="0 0 10 0" />
-
-        <PasswordBox
-            x:Name="PasswordTextBox" materialDesign:HintAssist.Hint="Contraseña"
-            Style="{DynamicResource PasswordBox}"
-            Grid.Column="2" Grid.Row="4"
-            Grid.ColumnSpan="2"
-            VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-        </PasswordBox>
-
-        <materialDesign:PackIcon
-            Kind="Key" Foreground="{Binding ElementName=PasswordTextBox, Path=BorderBrush}"
-            VerticalAlignment="Center" HorizontalAlignment="Right"
-            Grid.Column="1" Grid.Row="4" Margin="0 0 10 0" />
-
-        <Button
-            x:Name="LoginButton"
-            Style="{DynamicResource PrimaryButton }"
-            Content="Iniciar sesión"
-            Grid.Column="3" Grid.Row="6"
-            Click="LoginButton_Clicked"
-            VerticalContentAlignment="Center" HorizontalAlignment="Center" />
-
-        <Button
-            x:Name="RegisterButton"
-            Style="{DynamicResource SecundaryButton }"
-            Content="Registrarse"
-            Grid.Column="2" Grid.Row="6"
-            VerticalContentAlignment="Center" HorizontalAlignment="Center"
-            Click="RegisterButton_Clicked" />
+                            <Button
+                                x:Name="RegisterButton"
+                                Style="{DynamicResource SecundaryButton }"
+                                Content="Registrarse"
+                                Height="40"
+                                Grid.Column="0"
+                                VerticalContentAlignment="Center" HorizontalAlignment="Center"
+                                Click="RegisterButton_Clicked">
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
+
+<!--2946 x 1693-->
