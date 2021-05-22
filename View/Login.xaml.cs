@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Employex.Api;
 
 namespace Employex.View
 {
@@ -29,7 +25,7 @@ namespace Employex.View
 
         private bool TryToLogIn(string text, string password)
         {
-            ApiClient apiClient = new ApiClient();
+            GeneralUserApi apiClient = new GeneralUserApi();
             if (apiClient.LogIn(text, password))
                 return true;
             else

@@ -75,6 +75,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApiClient.cs" />
+    <Compile Include="Api\AplicationsApi.cs" />
+    <Compile Include="Api\EducationApi.cs" />
+    <Compile Include="Api\GeneralUserApi.cs" />
+    <Compile Include="Api\IndependientUserApi.cs" />
+    <Compile Include="Api\JobOfferApi.cs" />
+    <Compile Include="Api\LaboralExperienceApi.cs" />
+    <Compile Include="Api\OrganizationUserApi.cs" />
     <Compile Include="Models\JobOffer.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="View\AptitudesSelection.xaml.cs">
@@ -172,6 +179,7 @@
   <ItemGroup>
     <Resource Include="Utilities\Images\Logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
