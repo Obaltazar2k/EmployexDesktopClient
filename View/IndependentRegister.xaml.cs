@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Employex.Api;
+using Employex.Client;
+using Employex.Model;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using WPFCustomMessageBox;
@@ -25,9 +28,31 @@ namespace Employex.View
 
         private void NextButton_Clicked(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new AptitudesSelection());
-            return;
+            try
+            {
+                IndependientUserApi independientUserApi = new IndependientUserApi();
+                IndependientUser independientUser = new IndependientUser(name: NameTextBox.Text);
+                User generalUser = new User(email: EmailTextBox.Text);
+
+                //generalUser.Email = EmailTextBox.Text;
+                generalUser.City = CityTextBox.Text;
+                generalUser.Country = CountryTextBox.Text;
+                generalUser.Password = PasswordTextBox.Password;
+
+                //independientUser.Name = NameTextBox.Text;
+                independientUser.Surnames = LastNameTextBox.Text;
+                independientUser.Ocupation = OcupationTextBox.Text;
+                independientUser.PersoanlDescription = GeneralDescripctionTextBox.Text;
+                independientUser.User = generalUser;
+
+                var response = independientUserApi.RegisterIndpendientUserWithHttpInfo(independientUser);
+                MessageBox.Show("Ya estufas");
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 401)
+                    MessageBox.Show("Ya existe un usuario con el correo " + EmailTextBox.Text);
+            }           
         }
     }
 }
