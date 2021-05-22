@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows;
-using Employex.Models;
+using Employex.Model;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;

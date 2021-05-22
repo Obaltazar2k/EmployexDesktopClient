@@ -50,8 +50,18 @@
       <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,8 +92,27 @@
     <Compile Include="Api\JobOfferApi.cs" />
     <Compile Include="Api\LaboralExperienceApi.cs" />
     <Compile Include="Api\OrganizationUserApi.cs" />
-    <Compile Include="Models\JobOffer.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Client\ApiClient.cs" />
+    <Compile Include="Client\ApiException.cs" />
+    <Compile Include="Client\ApiResponse.cs" />
+    <Compile Include="Client\Configuration.cs" />
+    <Compile Include="Client\ExceptionFactory.cs" />
+    <Compile Include="Client\GlobalConfiguration.cs" />
+    <Compile Include="Client\IApiAccessor.cs" />
+    <Compile Include="Client\IReadableConfiguration.cs" />
+    <Compile Include="Client\SwaggerDateConverter.cs" />
+    <Compile Include="Model\Aplication.cs" />
+    <Compile Include="Model\Certification.cs" />
+    <Compile Include="Model\Education.cs" />
+    <Compile Include="Model\IndependientUser.cs" />
+    <Compile Include="Model\JobCategory.cs" />
+    <Compile Include="Model\JobOffer.cs" />
+    <Compile Include="Model\LaboralExperience.cs" />
+    <Compile Include="Model\Media.cs" />
+    <Compile Include="Model\OrganizationUser.cs" />
+    <Compile Include="Model\Section.cs" />
+    <Compile Include="Model\Sector.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="View\AptitudesSelection.xaml.cs">
       <DependentUpon>AptitudesSelection.xaml</DependentUpon>
     </Compile>
@@ -164,6 +193,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="docs\Aplication.md" />
+    <None Include="docs\AplicationsApi.md" />
+    <None Include="docs\Certification.md" />
+    <None Include="docs\Education.md" />
+    <None Include="docs\EducationApi.md" />
+    <None Include="docs\GeneralUserApi.md" />
+    <None Include="docs\IndependientUser.md" />
+    <None Include="docs\IndependientUserApi.md" />
+    <None Include="docs\JobCategory.md" />
+    <None Include="docs\JobOffer.md" />
+    <None Include="docs\JobOfferApi.md" />
+    <None Include="docs\LaboralExperience.md" />
+    <None Include="docs\LaboralExperienceApi.md" />
+    <None Include="docs\Media.md" />
+    <None Include="docs\OrganizationUser.md" />
+    <None Include="docs\OrganizationUserApi.md" />
+    <None Include="docs\Section.md" />
+    <None Include="docs\Sector.md" />
+    <None Include="docs\User.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
