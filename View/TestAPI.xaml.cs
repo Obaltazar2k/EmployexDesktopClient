@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Employex.Models;
+using Employex.Model;
 
 namespace Employex.View
 {
@@ -21,12 +21,13 @@ namespace Employex.View
         {
             ApiClient apiClient = new ApiClient();
             JobOffer jobOffer = apiClient.GetFirstJobOffer();
-
+            /*
             JobOfferIdTextBox.Text = jobOffer.job_offer_id;
             JobTextBox.Text = jobOffer.job;
             DescriptionTextBox.Text = jobOffer.description;
             JobCategoryTextBox.Text = jobOffer.job_category;
             LocationTextBox.Text = jobOffer.location;
+            */
         }
     }
 }

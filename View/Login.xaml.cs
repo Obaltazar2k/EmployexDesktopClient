@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Employex.Api;
+using Employex.Client;
 
 namespace Employex.View
 {
@@ -16,20 +18,18 @@ namespace Employex.View
 
         private void LoginButton_Clicked(object sender, RoutedEventArgs e)
         {
-            if (TryToLogIn(UserTextBox.Text, PasswordTextBox.Password)) {
+            GeneralUserApi generalUserApi = new GeneralUserApi();
+            try
+            {
+                var response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow?.ChangeView(new Home());
                 return;
+            } catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 401)
+                    MessageBox.Show("Credenciales incorrectas");
             }
-        }
-
-        private bool TryToLogIn(string text, string password)
-        {
-            GeneralUserApi apiClient = new GeneralUserApi();
-            if (apiClient.LogIn(text, password))
-                return true;
-            else
-                return false;
         }
 
         private void RegisterButton_Clicked(object sender, RoutedEventArgs e)
