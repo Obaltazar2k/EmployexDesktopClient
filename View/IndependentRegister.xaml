@@ -25,7 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <materialDesign:ColorZone Mode="Custom" Background="#1C1056" Grid.Column="0"
@@ -48,13 +48,49 @@
             MouseLeftButtonDown="BackIcon_Clicked"/>
 
         <Button
-            x:Name="NextButton"
-            Style="{DynamicResource PrimaryButton }"
-            Content="Siguiente"
+            x:Name="RegistButton"
+            Content="Registrarme"
             Grid.Column="2" Grid.Row="5"
             Grid.ColumnSpan="2"
-            Click="NextButton_Clicked"
-            VerticalContentAlignment="Center" HorizontalAlignment="Center" />
+            Click="RegistButton_Clicked"
+            VerticalContentAlignment="Center" HorizontalAlignment="Center">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#FFF5F5"/>
+                <Setter Property="Background" Value="#004AAD"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=EmailTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=NameTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=LastNameTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=CityTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=CountryTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=OcupationTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=GeneralDescripctionTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=PasswordTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
             <Grid>
@@ -129,7 +165,7 @@
                 </TextBox>
 
                 <TextBox
-                    x:Name="PostalCodeTextBox" materialDesign:HintAssist.Hint="Código postal"
+                    x:Name="OcupationTextBox" materialDesign:HintAssist.Hint="Ocupación"
                     Style="{DynamicResource TextBox}"
                     Grid.Column="2" Grid.Row="10"
                     Grid.ColumnSpan="2"
@@ -137,33 +173,20 @@
                 </TextBox>
 
                 <TextBox
-                    x:Name="OcupationTextBox" materialDesign:HintAssist.Hint="Ocupación"
+                    x:Name="GeneralDescripctionTextBox" materialDesign:HintAssist.Hint="Descripción general"
                     Style="{DynamicResource TextBox}"
                     Grid.Column="2" Grid.Row="12"
                     Grid.ColumnSpan="2"
-                    VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-                </TextBox>
-
-                <TextBox
-                    x:Name="GeneralDescripctionTextBox" materialDesign:HintAssist.Hint="Descripción general"
-                    Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="14"
-                    Grid.ColumnSpan="2"
-                    VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-                </TextBox>
-
-                <TextBox
-                    x:Name="TypeTextBox" materialDesign:HintAssist.Hint="Type"
-                    Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="16"
-                    Grid.ColumnSpan="2"
-                    VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                    VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto">
                 </TextBox>
 
                 <PasswordBox
                     x:Name="PasswordTextBox" materialDesign:HintAssist.Hint="Contraseña"
                     Style="{DynamicResource PasswordBox}"
-                    Grid.Column="2" Grid.Row="18"
+                    Grid.Column="2" Grid.Row="14"
                     Grid.ColumnSpan="2"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </PasswordBox>

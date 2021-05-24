@@ -113,6 +113,7 @@
     <Compile Include="Model\Section.cs" />
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Utilities\FieldsVerificator.cs" />
     <Compile Include="View\AptitudesSelection.xaml.cs">
       <DependentUpon>AptitudesSelection.xaml</DependentUpon>
     </Compile>
