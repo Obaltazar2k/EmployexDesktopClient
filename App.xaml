@@ -39,6 +39,14 @@
                 <Setter Property="Foreground" Value="#FFFFFF"/>
             </Style>
 
+            <Style x:Key="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" TargetType="{x:Type TextBlock}">
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                <Setter Property="materialDesign:HintAssist.Foreground" Value="#004AAD"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="ScrollViewer.BorderBrush" Value="#FFFFFF"/>
+            </Style>
+
             <Style x:Key="TextBoxAlternative" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
                 <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
                 <Setter Property="materialDesign:HintAssist.Foreground" Value="#FFFFFF"/>
