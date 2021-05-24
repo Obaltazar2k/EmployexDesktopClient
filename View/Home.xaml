@@ -112,25 +112,25 @@
                                            HorizontalAlignment="Left" Margin="10 5 10 0">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="TiteTextBlock" Grid.Column="0" Grid.Row="1" Text="{Binding job}"
+                                        <TextBlock x:Name="TiteTextBlock" Grid.Column="0" Grid.Row="1" Text="{Binding Job}"
                                             FontSize="16" FontWeight="DemiBold" Foreground="#2A2A2A"
                                             HorizontalAlignment="Left" Margin="10 4 10 0" TextWrapping="WrapWithOverflow" 
                                             VerticalAlignment="Stretch" TextAlignment="Left">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="LocationTextBlock" Grid.Column="0" Grid.Row="2" Text="{Binding location}"
+                                        <TextBlock x:Name="LocationTextBlock" Grid.Column="0" Grid.Row="2" Text="{Binding Location}"
                                             FontSize="11" Foreground="#2A2A2A"
                                             HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
                                             VerticalAlignment="Stretch" TextAlignment="Left">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="CategoryTextBlock" Grid.Column="0" Grid.Row="3" Text="{Binding job_category}"
+                                        <TextBlock x:Name="CategoryTextBlock" Grid.Column="0" Grid.Row="3" Text="{Binding JobCategory}"
                                             FontSize="11" Foreground="#2A2A2A"
                                             HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
                                             VerticalAlignment="Stretch" TextAlignment="Left">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="DescriptionTextBlock" Grid.Column="0" Grid.Row="4" Text="{Binding description}"
+                                        <TextBlock x:Name="DescriptionTextBlock" Grid.Column="0" Grid.Row="4" Text="{Binding Description}"
                                             FontSize="14" FontWeight="Medium" Foreground="#2A2A2A"
                                             HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
                                             VerticalAlignment="Stretch" TextAlignment="Left">

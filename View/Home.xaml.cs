@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Employex.Api;
+using Employex.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,18 +23,32 @@ namespace Employex.View
     /// </summary>
     public partial class Home : Page
     {
+        private ObservableCollection<JobOffer> jobOffersCollection;
         public Home()
         {
             InitializeComponent();
-            getJobOffers();
+            getJobOffers(1);
         }
 
-        public void getJobOffers()
+        public void getJobOffers(int page)
         {
-            ApiClient apiClient = new ApiClient();
-            var jobOffersList = apiClient.GetJobOffers();
+            JobOfferApi jobOfferApi = new JobOfferApi();
+            var jobOffersList = jobOfferApi.GetJobOffers(page);
 
-            JobOffersList.ItemsSource = jobOffersList;
+            jobOffersCollection = new ObservableCollection<JobOffer>();
+            
+            if (jobOffersList != null)
+            {
+                foreach (JobOffer jobOffer in jobOffersList)
+                {
+                    if (jobOffer != null)
+                        jobOffersCollection.Add(jobOffer);
+                }
+            }
+
+            JobOffersList.ItemsSource = jobOffersCollection;
+            DataContext = jobOffersCollection;
+
         }
     }
 }

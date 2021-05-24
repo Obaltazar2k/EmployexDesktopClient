@@ -278,8 +278,6 @@ namespace Employex.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
             }
 
-            localVarHeaderParams["Authorization"] = string.Format("Bearer {0}", "046b6c7f - 0b8a - 43b9 - b35d - 6489e6daee91");
-
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
