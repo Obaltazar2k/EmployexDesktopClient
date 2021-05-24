@@ -147,7 +147,7 @@ namespace Employex.View
                     organizationUser.User = generalUser;
 
                     var response = organizationtUserApi.RegisterOrganizationUserWithHttpInfo(organizationUser);
-                    CustomMessageBox.ShowOK("UEl usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
+                    CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
                     BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }
             }
