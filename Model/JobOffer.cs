@@ -38,7 +38,7 @@ namespace Employex.Model
         /// <param name="jobCategory">jobCategory.</param>
         /// <param name="location">Location where the job offer is.</param>
         /// <param name="media">Multimedia data related to the job offer.</param>
-        public JobOffer(Guid? jobOfferId = default(Guid?), string job = default(string), string description = default(string), JobCategory jobCategory = default(JobCategory), string location = default(string), List<Media> media = default(List<Media>))
+        public JobOffer(int jobOfferId = default(int), string job = default(string), string description = default(string), JobCategory jobCategory = default(JobCategory), string location = default(string), List<Media> media = default(List<Media>))
         {
             // to ensure "job" is required (not null)
             if (job == null)
@@ -69,7 +69,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of the job offer</value>
         [DataMember(Name="job_offer_id", EmitDefaultValue=false)]
-        public Guid? JobOfferId { get; set; }
+        public int JobOfferId { get; set; }
 
         /// <summary>
         /// Title of the job

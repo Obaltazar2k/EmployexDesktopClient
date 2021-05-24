@@ -3,6 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Employex.Api;
 using Employex.Client;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 
 namespace Employex.View
 {
@@ -22,6 +25,7 @@ namespace Employex.View
             try
             {
                 var response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
+                Configuration.Default.AccessToken = response;
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow?.ChangeView(new Home());
                 return;
