@@ -11,7 +11,7 @@
 
     <Grid Margin="0 5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -50,19 +50,19 @@
         <Button
             x:Name="RegistButton"
             Content="Registrarme"
-            Grid.Column="2" Grid.Row="5"
-            Grid.ColumnSpan="2"
+            Grid.Column="4" Grid.Row="5"
+            Grid.ColumnSpan="1"
             Click="RegistButton_Clicked"
             VerticalContentAlignment="Center" HorizontalAlignment="Center">
             <Button.Style>
                 <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="#FFF5F5"/>
-                <Setter Property="Background" Value="#004AAD"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Style.Triggers>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Foreground" Value="#FFF5F5"/>
+                    <Setter Property="Background" Value="#004AAD"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Style.Triggers>
                         <DataTrigger Binding="{Binding Text.Length, ElementName=EmailTextBox, UpdateSourceTrigger=PropertyChanged}" Value="0">
                             <Setter Property="IsEnabled" Value="False" />
                         </DataTrigger>
@@ -92,10 +92,46 @@
             </Button.Style>
         </Button>
 
-        <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
+        <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <materialDesign:PackIcon
+                    x:Name="ImageAddIcon"
+                    Kind="Image"
+                    Height="200" Width="200"
+                    Foreground="#004AAD"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Grid.Column="0" Grid.Row="1">
+                </materialDesign:PackIcon>
+
+                <Image x:Name="perfilImage" Height="200" Width="200" Grid.Column="0" Grid.Row="1"/>
+
+                <Button
+                    x:Name="SelectImageButton"
+                    Style="{DynamicResource SecundaryButton }"
+                    Content="Seleccionar imagen"
+                    Grid.Column="0" Grid.Row="2"
+                    Margin="0 30"
+                    Click="SelectImageButton_Clicked"
+                    VerticalContentAlignment="Center" HorizontalAlignment="Center">
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -127,56 +163,56 @@
                 <TextBox
                     x:Name="EmailTextBox" materialDesign:HintAssist.Hint="Email"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="0"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="NameTextBox" materialDesign:HintAssist.Hint="Nombre"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="2"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="2"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="LastNameTextBox" materialDesign:HintAssist.Hint="Apellidos"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="4"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="4"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="CityTextBox" materialDesign:HintAssist.Hint="Ciudad"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="6"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="6"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="CountryTextBox" materialDesign:HintAssist.Hint="País"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="8"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="8"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="OcupationTextBox" materialDesign:HintAssist.Hint="Ocupación"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="10"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="10"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </TextBox>
 
                 <TextBox
                     x:Name="GeneralDescripctionTextBox" materialDesign:HintAssist.Hint="Descripción general"
                     Style="{DynamicResource TextBox}"
-                    Grid.Column="2" Grid.Row="12"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="12"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch"
                     TextWrapping="Wrap"
                     AcceptsReturn="True"
@@ -186,8 +222,8 @@
                 <PasswordBox
                     x:Name="PasswordTextBox" materialDesign:HintAssist.Hint="Contraseña"
                     Style="{DynamicResource PasswordBox}"
-                    Grid.Column="2" Grid.Row="14"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1" Grid.Row="14"
+                    Grid.ColumnSpan="4"
                     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                 </PasswordBox>
             </Grid>

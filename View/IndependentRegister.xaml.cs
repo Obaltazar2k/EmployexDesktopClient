@@ -2,8 +2,12 @@
 using Employex.Client;
 using Employex.Model;
 using Employex.Utilities;
+using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using WPFCustomMessageBox;
 
@@ -14,6 +18,7 @@ namespace Employex.View
     /// </summary>
     public partial class IndependentRegister : Page
     {
+        OpenFileDialog dialog;
         public IndependentRegister()
         {
             InitializeComponent();
@@ -40,6 +45,18 @@ namespace Employex.View
                     generalUser.City = CityTextBox.Text;
                     generalUser.Country = CountryTextBox.Text;
                     generalUser.Password = PasswordTextBox.Password;
+                    
+                    Stream myStream = null;
+                    myStream = dialog.OpenFile();
+                    if (myStream != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            myStream.CopyTo(ms);
+                            byte[] imageFile = ms.ToArray();
+                            generalUser.ProfilePhoto.File = imageFile;
+                        }
+                    }
 
                     independientUser.Surnames = LastNameTextBox.Text;
                     independientUser.Ocupation = OcupationTextBox.Text;
@@ -47,7 +64,7 @@ namespace Employex.View
                     independientUser.User = generalUser;
 
                     var response = independientUserApi.RegisterIndpendientUserWithHttpInfo(independientUser);
-                    CustomMessageBox.ShowOK("UEl usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
+                    CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
                     BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }               
             }
@@ -56,6 +73,23 @@ namespace Employex.View
                 if (ex.ErrorCode == 400)
                     CustomMessageBox.ShowOK("Ya existe un usuario con el correo " + EmailTextBox.Text, "Usuario existente", "Aceptar");
             }           
+        }
+
+        private void SelectImageButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            dialog = new OpenFileDialog();
+            dialog = new OpenFileDialog
+            {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                FilterIndex = 1
+            };
+
+            if(dialog.ShowDialog() == true)
+            {
+                ImageAddIcon.Visibility = Visibility.Hidden;
+                Uri fileUri = new Uri(dialog.FileName);
+                perfilImage.Source = new BitmapImage(fileUri);
+            }
         }
 
         private bool VerificateFields()
