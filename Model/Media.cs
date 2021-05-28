@@ -34,7 +34,7 @@ namespace Employex.Model
         /// </summary>
         /// <param name="mediaId">Binary data of the media file.</param>
         /// <param name="file">Binary data of the media file.</param>
-        public Media(Guid? mediaId = default(Guid?), byte[] file = default(byte[]))
+        public Media(int? mediaId = default(int?), byte[] file = default(byte[]))
         {
             this.MediaId = mediaId;
             this.File = file;
@@ -45,7 +45,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Binary data of the media file</value>
         [DataMember(Name="media_id", EmitDefaultValue=false)]
-        public Guid? MediaId { get; set; }
+        public int? MediaId { get; set; }
 
         /// <summary>
         /// Binary data of the media file

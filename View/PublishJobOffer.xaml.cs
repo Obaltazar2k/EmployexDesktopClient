@@ -41,7 +41,7 @@ namespace Employex.View
 
                 JobOffer jobOffer = new JobOffer(job: JobTextBox.Text, description: DescriptionTextBox.Text, jobCategory: (JobCategory)JobCategoryCombobox.SelectedItem, media: imagesList);
                 jobOfferApi.AddJobOffer(jobOffer);
-                CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
+                CustomMessageBox.ShowOK("La oferta de trabajo ha sido publicada con éxito.", "Publicación exitosa", "Aceptar");
                 BackIcon_Clicked(new object(),new RoutedEventArgs());
             
             }
