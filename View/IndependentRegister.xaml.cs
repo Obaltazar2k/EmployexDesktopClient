@@ -41,6 +41,7 @@ namespace Employex.View
                     IndependientUserApi independientUserApi = new IndependientUserApi();
                     IndependientUser independientUser = new IndependientUser(name: NameTextBox.Text);
                     User generalUser = new User(email: EmailTextBox.Text);
+                    Media perfilImage = new Media();
 
                     generalUser.City = CityTextBox.Text;
                     generalUser.Country = CountryTextBox.Text;
@@ -54,7 +55,8 @@ namespace Employex.View
                         {
                             myStream.CopyTo(ms);
                             byte[] imageFile = ms.ToArray();
-                            generalUser.ProfilePhoto.File = imageFile;
+                            perfilImage.File = imageFile;
+                            generalUser.ProfilePhoto = perfilImage;
                         }
                     }
 
@@ -65,7 +67,7 @@ namespace Employex.View
 
                     var response = independientUserApi.RegisterIndpendientUserWithHttpInfo(independientUser);
                     CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
-                    BackIcon_Clicked(new object(), new RoutedEventArgs());
+                    //BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }               
             }
             catch (ApiException ex)
