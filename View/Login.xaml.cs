@@ -6,6 +6,7 @@ using Employex.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using WPFCustomMessageBox;
 
 namespace Employex.View
 {
@@ -26,13 +27,15 @@ namespace Employex.View
             {
                 var response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
                 Configuration.Default.AccessToken = response;
+                Configuration.Default.Username = UserTextBox.Text;
+                Configuration.Default.Password = PasswordTextBox.Password;
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow?.ChangeView(new Home());
                 return;
             } catch (ApiException ex)
             {
                 if (ex.ErrorCode == 401)
-                    MessageBox.Show("Credenciales incorrectas");
+                    CustomMessageBox.Show("Credenciales incorrectas");
             }
         }
 

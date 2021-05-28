@@ -1,4 +1,5 @@
 ﻿using Employex.View;
+using MaterialDesignThemes.Wpf;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,9 +10,16 @@ namespace Employex
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
+
         public MainWindow()
         {
             InitializeComponent();
+            ITheme theme = _paletteHelper.GetTheme();
+            theme.SetPrimaryColor(System.Windows.Media.Color.FromRgb(0, 74, 173));
+            theme.SetSecondaryColor(System.Windows.Media.Color.FromRgb(230, 225, 225));
+            theme.SetBaseTheme(Theme.Dark);
+            _paletteHelper.SetTheme(theme);
             Application.Current.MainWindow = this;
             Loaded += OnMainWindowLoaded;
         }
