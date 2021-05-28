@@ -51,7 +51,6 @@
             x:Name="RegistButton"
             Content="Registrarme"
             Grid.Column="4" Grid.Row="5"
-            Grid.ColumnSpan="1"
             Click="RegistButton_Clicked"
             VerticalContentAlignment="Center" HorizontalAlignment="Center">
             <Button.Style>
@@ -101,27 +100,21 @@
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-
-                <materialDesign:PackIcon
-                    x:Name="ImageAddIcon"
-                    Kind="Image"
-                    Height="200" Width="200"
-                    Foreground="#004AAD"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Grid.Column="0" Grid.Row="1">
-                </materialDesign:PackIcon>
-
-                <Image x:Name="perfilImage" Height="200" Width="200" Grid.Column="0" Grid.Row="1"/>
+                <Ellipse Grid.Column="0" Grid.Row="1" Height="200" Width="200" >
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="perfilImage" ImageSource="/Utilities/Images/defaultAvatar.jpg" Stretch="Uniform"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <!--<Image x:Name="perfilImage" Height="200" Width="200" Grid.Column="0" Grid.Row="1"/>-->
 
                 <Button
                     x:Name="SelectImageButton"
                     Style="{DynamicResource SecundaryButton }"
                     Content="Seleccionar imagen"
                     Grid.Column="0" Grid.Row="2"
-                    Margin="0 30"
+                    Margin="0 20"
                     Click="SelectImageButton_Clicked"
                     VerticalContentAlignment="Center" HorizontalAlignment="Center">
                 </Button>
@@ -131,7 +124,7 @@
         <ScrollViewer Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="6">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />

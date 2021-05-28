@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using WPFCustomMessageBox;
+using Employex.Utilities;
 
 namespace Employex.View
 {
@@ -19,9 +20,12 @@ namespace Employex.View
     public partial class IndependentRegister : Page
     {
         OpenFileDialog dialog;
+        Stream myStream = null;
         public IndependentRegister()
         {
             InitializeComponent();
+            string defaultAvatarImageUri = (Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Utilities\\Images\\defaultAvatar.jpg")));
+            myStream = new FileStream(defaultAvatarImageUri, FileMode.Open, FileAccess.Read);
         }
 
         private void BackIcon_Clicked(object sender, RoutedEventArgs e)
@@ -46,9 +50,7 @@ namespace Employex.View
                     generalUser.City = CityTextBox.Text;
                     generalUser.Country = CountryTextBox.Text;
                     generalUser.Password = PasswordTextBox.Password;
-                    
-                    Stream myStream = null;
-                    myStream = dialog.OpenFile();
+                                        
                     if (myStream != null)
                     {
                         using (MemoryStream ms = new MemoryStream())
@@ -88,9 +90,9 @@ namespace Employex.View
 
             if(dialog.ShowDialog() == true)
             {
-                ImageAddIcon.Visibility = Visibility.Hidden;
                 Uri fileUri = new Uri(dialog.FileName);
-                perfilImage.Source = new BitmapImage(fileUri);
+                perfilImage.ImageSource = new BitmapImage(fileUri);
+                myStream = dialog.OpenFile();
             }
         }
 
