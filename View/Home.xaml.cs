@@ -1,4 +1,6 @@
 ﻿using Employex.Api;
+using Employex.Client;
+using Employex.Client;
 using Employex.Model;
 using System;
 using System.Collections.Generic;
@@ -27,14 +29,22 @@ namespace Employex.View
         public Home()
         {
             InitializeComponent();
-            getJobOffers(1);
+            try
+            {
+                GetJobOffers(1);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
+            }
         }
 
-        public void getJobOffers(int page)
+        public void GetJobOffers(int page)
         {
             JobOfferApi jobOfferApi = new JobOfferApi();
-            var jobOffersList = jobOfferApi.GetJobOffers(page);
 
+            var jobOffersList = jobOfferApi.GetJobOffers(page);
             jobOffersCollection = new ObservableCollection<JobOffer>();
             
             if (jobOffersList != null)
@@ -49,6 +59,23 @@ namespace Employex.View
             JobOffersList.ItemsSource = jobOffersCollection;
             DataContext = jobOffersCollection;
 
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Configuration.Default.AccessToken = null;
+            Configuration.Default.Username = null;
+            Configuration.Default.Password = null;
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new Login());
+            return;
+        }
+
+        private void PubishJobOfferButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new PublishJobOffer());
+            return;
         }
     }
 }
