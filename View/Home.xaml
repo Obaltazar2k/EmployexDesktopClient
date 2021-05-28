@@ -8,7 +8,7 @@
       d:DesignHeight="600" d:DesignWidth="1080"
       Title="Home" Background="#E6E1E1">
 
-    <Grid>
+    <Grid  UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -53,13 +53,14 @@
                 </TextBox>
 
                 <Button
-                    x:Name="RegisterButton"
+                    x:Name="LogoutButton"
                     Style="{DynamicResource SecundaryButton }"
-                    Height="35" Width="200"
                     Grid.Column="2"
-                    Content="Publicar oferta de trabajo"
+                    Content="Cerrar sesión"
                     VerticalContentAlignment="Center" HorizontalAlignment="Left"
-                    Margin="20 0 20 0">
+                    Padding="16 0"
+                    Margin="20 0 20 0"
+                    Click="LogoutButton_Click">
                 </Button>
 
             </Grid>
@@ -154,5 +155,27 @@
                 </ItemsControl>
             </Grid>
         </ScrollViewer>
+
+        <Button 
+            Name="PublishJobOfferButton"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
+            Grid.Row="6"
+            Grid.RowSpan="2"
+            Style="{DynamicResource PrimaryButton}"
+            Click="PubishJobOfferButton_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon
+                Height="Auto"
+                Kind="Edit"
+                Margin="0 0 10 0"
+                Width="Auto" />
+                <TextBlock
+                Text="Publicar oferta de trabajo"/>
+            </StackPanel>
+            <Button.Effect>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="10" Opacity="0.3" />
+            </Button.Effect>
+        </Button>
     </Grid>
 </Page>
