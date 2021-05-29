@@ -3,12 +3,16 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1080"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:Converter="clr-namespace:Employex.Utilities"
+      mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1080"
+      Loaded="Page_Loaded"
       Title="Home" Background="#E6E1E1">
+    <Page.Resources>
+        <Converter:ByteToImageConverter x:Name="binaryConverter" x:Key="byteToImageConverter"/>
+    </Page.Resources>
 
-    <Grid  UseLayoutRounding="True">
+    <Grid UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -28,45 +32,99 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <materialDesign:ColorZone Mode="Custom" Background="#004AAD" Grid.Column="0"
-                                  Grid.Row="0" Grid.ColumnSpan="6" VerticalAlignment="Center" 
-                                  HorizontalAlignment="Stretch" Height="55"
-                                  materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        <materialDesign:ColorZone 
+            Background="#004AAD"
+            Grid.ColumnSpan="6" 
+            Height="Auto"
+            HorizontalAlignment="Stretch" 
+            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+            Mode="Custom" 
+            VerticalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
-                <materialDesign:PackIcon Kind="Search" Width="40" Height="40"
-                                         Margin="10 0"
-                                        Foreground="{Binding ElementName=UserTextBox, Path=BorderBrush}"
-                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <materialDesign:PackIcon 
+                    Foreground="{Binding ElementName=UserTextBox, Path=BorderBrush}"
+                    Height="40"
+                    HorizontalAlignment="Left"
+                    Kind="Search" 
+                    Margin="10 0"
+                    VerticalAlignment="Center" 
+                    Width="Auto" />
                 <TextBox
-                    x:Name="UserTextBox" materialDesign:HintAssist.Hint="Buscar"
-                    materialDesign:HintAssist.HelperTextFontSize="20"
-                    VerticalAlignment="Center"
-                    Style="{DynamicResource TextBoxAlternative}"
                     Grid.Column="1"
-                    Margin="10">
-                </TextBox>
+                    Margin="10"
+                    materialDesign:HintAssist.HelperTextFontSize="20"
+                    materialDesign:HintAssist.Hint="Buscar"
+                    Style="{DynamicResource TextBoxAlternative}"
+                    VerticalAlignment="Center"
+                    x:Name="UserTextBox" />
 
+                <Button 
+                    x:Name="PreviousPageButton"
+                    Style="{DynamicResource SecundaryButton }"
+                    Grid.Column="2"
+                    Padding="16 0"
+                    Margin="20 0 20 0"
+                    Click="PreviousPageButton_Click"
+                    IsEnabled="False">
+                    <materialDesign:PackIcon
+                        Kind="PagePrevious"
+                        Width="Auto"
+                        Height="Auto"/>
+                </Button>
+
+                <TextBlock 
+                    Grid.Column="3"
+                    x:Name="PageTextBlock"
+                    Text="1"
+                    FontSize="24"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource TextBlock}"/>
+
+                <Button 
+                    x:Name="NextPageButton"
+                    Style="{DynamicResource SecundaryButton }"
+                    Grid.Column="4"
+                    Padding="16 0"
+                    Margin="20 0 20 0"
+                    Click="NextPageButton_Click">
+                    <materialDesign:PackIcon
+                        Kind="PageNext"
+                        Width="Auto"
+                        Height="Auto"/>
+                </Button>
+                
                 <Button
                     x:Name="LogoutButton"
                     Style="{DynamicResource SecundaryButton }"
-                    Grid.Column="2"
+                    Grid.Column="5"
                     Content="Cerrar sesión"
-                    VerticalContentAlignment="Center" HorizontalAlignment="Left"
+                    VerticalContentAlignment="Center" 
+                    HorizontalAlignment="Right"
                     Padding="16 0"
                     Margin="20 0 20 0"
-                    Click="LogoutButton_Click">
-                </Button>
-
+                    Click="LogoutButton_Click"/>
             </Grid>
         </materialDesign:ColorZone>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="7">
+        <ProgressBar
+            x:Name="ProgressBar"
+            Style="{DynamicResource MaterialDesignCircularProgressBar}"
+            IsIndeterminate="True"
+            Foreground="#004AAD"
+            Width="100" Height="100"
+            Grid.Row="1"
+            Grid.ColumnSpan="6"
+            Grid.RowSpan="2"/>
+
+        <ScrollViewer x:Name="ScrollViewer" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="7" Visibility="Collapsed">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -85,19 +143,27 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <materialDesign:ColorZone Mode="Custom" Background="#FFF" Grid.Column="0"
-                                    Grid.Row="0" Grid.ColumnSpan="6" VerticalAlignment="Center" 
-                                    HorizontalAlignment="Stretch" Margin="30 10 30 20" CornerRadius="10" Height="Auto"
-                                    Width="1005" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                                <materialDesign:ColorZone 
+                                        Background="#FFF" 
+                                        CornerRadius="10"
+                                        Height="Auto"
+                                        HorizontalAlignment="Stretch" 
+                                        Margin="32 8 32 16" 
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                        Mode="Custom" 
+                                        VerticalAlignment="Stretch" >
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -105,50 +171,123 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock x:Name="UserTextBlock" Grid.Column="0" Grid.Row="0" Text="Omar Baltazar"
-                                           TextAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#2A2A2A"
-                                           HorizontalAlignment="Left" Margin="10 5 10 0">
+                                        <TextBlock 
+                                            Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                                            FontWeight="Bold" 
+                                            Foreground="#2A2A2A"
+                                            HorizontalAlignment="Left"
+                                            Margin="16 8 16 0" 
+                                            TextAlignment="Left"
+                                            TextWrapping="WrapWithOverflow" 
+                                            VerticalAlignment="Center" 
+                                            x:Name="TiteTextBlock"
+                                            Text="{Binding Job}" >
                                         </TextBlock>
 
-                                        <TextBlock x:Name="TiteTextBlock" Grid.Column="0" Grid.Row="1" Text="{Binding Job}"
-                                            FontSize="16" FontWeight="DemiBold" Foreground="#2A2A2A"
-                                            HorizontalAlignment="Left" Margin="10 4 10 0" TextWrapping="WrapWithOverflow" 
-                                            VerticalAlignment="Stretch" TextAlignment="Left">
+                                        <TextBlock 
+                                            Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                            FontWeight="DemiBold" 
+                                            Foreground="#2A2A2A"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="1" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="16 8 16 0"
+                                            TextAlignment="Center" 
+                                            VerticalAlignment="Bottom"
+                                            x:Name="UserTextBlock"
+                                            Text="{Binding Username}">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="LocationTextBlock" Grid.Column="0" Grid.Row="2" Text="{Binding Location}"
-                                            FontSize="11" Foreground="#2A2A2A"
-                                            HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
-                                            VerticalAlignment="Stretch" TextAlignment="Left">
+                                        <TextBlock 
+                                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                            Foreground="#2A2A2A"
+                                            Grid.ColumnSpan="1"
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Left" 
+                                            Margin="16 8 16 4" 
+                                            TextAlignment="Left"
+                                            TextWrapping="WrapWithOverflow" 
+                                            VerticalAlignment="Bottom" 
+                                            x:Name="LocationTextBlock"
+                                            Text="{Binding Location}">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="CategoryTextBlock" Grid.Column="0" Grid.Row="3" Text="{Binding JobCategory}"
-                                            FontSize="11" Foreground="#2A2A2A"
-                                            HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
-                                            VerticalAlignment="Stretch" TextAlignment="Left">
+                                        <TextBlock 
+                                            Style="{DynamicResource MaterialDesignSubtitle1TextBlock}"
+                                            Foreground="#2A2A2A"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Column="1" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="16 8 16 8" 
+                                            TextAlignment="Left"
+                                            TextWrapping="WrapWithOverflow" 
+                                            VerticalAlignment="Bottom" 
+                                            x:Name="CategoryTextBlock"
+                                            Text="{Binding JobCategory}">
                                         </TextBlock>
 
-                                        <TextBlock x:Name="DescriptionTextBlock" Grid.Column="0" Grid.Row="4" Text="{Binding Description}"
-                                            FontSize="14" FontWeight="Medium" Foreground="#2A2A2A"
-                                            HorizontalAlignment="Left" Margin="10 2 10 0" TextWrapping="WrapWithOverflow" 
-                                            VerticalAlignment="Stretch" TextAlignment="Left">
+                                        <TextBlock 
+                                            FontSize="14" 
+                                            FontWeight="Medium" 
+                                            Foreground="#2A2A2A"
+                                            Grid.ColumnSpan="4" 
+                                            Grid.Row="2" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="16 8 16 8" 
+                                            TextAlignment="Left"
+                                            TextWrapping="WrapWithOverflow" 
+                                            VerticalAlignment="Stretch" 
+                                            x:Name="DescriptionTextBlock" 
+                                            Text="{Binding Description}">
                                         </TextBlock>
+
+                                        <ListView 
+                                            ItemsSource="{Binding Media}" 
+                                            Grid.Row="3"
+                                            Grid.ColumnSpan="3"
+                                            HorizontalAlignment="Center"
+                                            Margin="16 8 16 8">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image 
+                                                        Source="{Binding File, Converter={StaticResource byteToImageConverter}}" 
+                                                        Margin="8 0 8 0" 
+                                                        x:Name="image1" 
+                                                        Height="150" 
+                                                        Width="150"/>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel
+                                                        Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.Style>
+                                                <Style TargetType="ListView" >
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Media.Count, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ListView.Style>
+                                        </ListView>
 
                                         <Button
                                             x:Name="Button"
                                             Style="{DynamicResource PrimaryButton }"
-                                            Height="30"
                                             Content="Aplicar"
-                                            Grid.Column="0"
                                             Grid.Row="5"
-                                            Margin="10 10 10 5"
-                                            VerticalContentAlignment="Center" HorizontalAlignment="Left">
+                                            Margin="16 16 16 16"
+                                            VerticalContentAlignment="Center" 
+                                            HorizontalAlignment="Left">
                                         </Button>
                                     </Grid>
-                                </materialDesign:ColorZone> 
+                                </materialDesign:ColorZone>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

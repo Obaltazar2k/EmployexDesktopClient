@@ -113,6 +113,7 @@
     <Compile Include="Model\Section.cs" />
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Utilities\ByteToImageConverter.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
     <Compile Include="View\AptitudesSelection.xaml.cs">
       <DependentUpon>AptitudesSelection.xaml</DependentUpon>
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="View\TestAPI.xaml.cs">
       <DependentUpon>TestAPI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GetJobOffer.xaml.cs">
+      <DependentUpon>GetJobOffer.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AptitudesSelection.xaml">
       <SubType>Designer</SubType>
@@ -186,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TestAPI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GetJobOffer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
