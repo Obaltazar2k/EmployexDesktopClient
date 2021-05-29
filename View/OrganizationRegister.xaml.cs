@@ -9,6 +9,9 @@ using Employex.Model;
 using Employex.Client;
 using System;
 using System.Windows.Input;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Employex.View
 {
@@ -21,10 +24,14 @@ namespace Employex.View
         "FUNCION PUBLICA","HOTELERIA, RESTAURACIÓN, TURISMO", "INDUSTRIAS QUIMICAS", "INGENIERIA MECANICA Y ELECTICA", "MEDIOS DE COMUNICACION, CULTURA, GRAFICOS", "MINERIA", "PETROLEO Y PRODUCCION DE GASES, REFINACION DE PETROLEO",
         "PRODUCCION DE MATERIALES BASICOS", "SERVICIOS DE CORREO Y TELECOMUNICACIONES", "SERVICIOS DE SALUD", "SERVICIOS FINANCIEROS, SERVICIOS PROFESIONALES", "SERVICIOS PUBLICOS", "SILVICULTURA, MADERA, CELULOSA, PAPEL", 
             "TEXTILES, VESTIDO, CUERO, CALZADO", "TRANSPORTE", "TRANSPORTE MARITIMO"};
+        OpenFileDialog dialog;
+        Stream myStream = null;
         public OrganizationRegister()
         {
             InitializeComponent();
             SectorComboBox.ItemsSource = sectorList;
+            string defaultAvatarImageUri = (Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Utilities\\Images\\defaultOrganizationAvatar.png")));
+            myStream = new FileStream(defaultAvatarImageUri, FileMode.Open, FileAccess.Read);
         }
 
         private void BackIcon_Clicked(object sender, RoutedEventArgs e)
@@ -44,10 +51,22 @@ namespace Employex.View
                     OrganizationUserApi organizationtUserApi = new OrganizationUserApi();
                     OrganizationUser organizationUser = new OrganizationUser(name: NameTextBox.Text, contactEmail: AgentEmailTextBox.Text);
                     User generalUser = new User(email: EmailTextBox.Text);
+                    Media perfilImage = new Media();
 
                     generalUser.City = CityTextBox.Text;
                     generalUser.Country = CountryTextBox.Text;
                     generalUser.Password = PasswordTextBox.Password;
+
+                    if (myStream != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            myStream.CopyTo(ms);
+                            byte[] imageFile = ms.ToArray();
+                            perfilImage.File = imageFile;
+                            generalUser.ProfilePhoto = perfilImage;
+                        }
+                    }
 
                     organizationUser.About = DescripctionTextBox.Text;
                     organizationUser.ContactPhone = PhoneTextBox.Text;
@@ -164,6 +183,23 @@ namespace Employex.View
                 e.Handled = false;
             else
                 e.Handled = true;
+        }
+
+        private void SelectImageButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            dialog = new OpenFileDialog();
+            dialog = new OpenFileDialog
+            {
+                Filter = "Image files|*.png;*.jpg;*.jpeg",
+                FilterIndex = 1
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(dialog.FileName);
+                perfilImage.ImageSource = new BitmapImage(fileUri);
+                myStream = dialog.OpenFile();
+            }
         }
 
         private bool VerificateFields()
