@@ -43,7 +43,7 @@ namespace Employex.View
         private void RegisterButton_Clicked(object sender, RoutedEventArgs e)
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new RegisterSelection());
+            mainWindow?.ChangeView(new IndependientProfileConsult());
             return;
         }
     }

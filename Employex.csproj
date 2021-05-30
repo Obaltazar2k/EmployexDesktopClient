@@ -130,8 +130,8 @@
     <Compile Include="View\OrganizationRegister.xaml.cs">
       <DependentUpon>OrganizationRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProfileConsult.xaml.cs">
-      <DependentUpon>ProfileConsult.xaml</DependentUpon>
+    <Compile Include="View\IndependientProfileConsult.xaml.cs">
+      <DependentUpon>IndependientProfileConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PublishJobOffer.xaml.cs">
       <DependentUpon>PublishJobOffer.xaml</DependentUpon>
@@ -177,7 +177,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileConsult.xaml">
+    <Page Include="View\IndependientProfileConsult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
