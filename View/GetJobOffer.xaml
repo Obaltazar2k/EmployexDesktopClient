@@ -55,19 +55,22 @@
                     x:Name="TiteTextBlock" >
                 </TextBlock>
 
-                <TextBlock 
-                    Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                <Button  
+                    Style="{DynamicResource SecundaryButton}"
+                    BorderBrush="Transparent"
+                    Background="Transparent"
+                    Content="Username"
                     FontWeight="DemiBold" 
                     Foreground="#2A2A2A"
+                    Padding="0"
                     Grid.ColumnSpan="2"
                     Grid.Row="1" 
                     HorizontalAlignment="Left" 
                     Margin="16 8 16 0"
-                    Text="Ricardo Ruíz"
-                    TextAlignment="Center" 
-                    VerticalAlignment="Bottom"
+                    VerticalContentAlignment="Bottom"
+                    HorizontalContentAlignment="Left"
                     x:Name="UserTextBlock">
-                </TextBlock>
+                </Button>
 
                 <TextBlock 
                     Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
