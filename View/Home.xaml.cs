@@ -134,7 +134,23 @@ namespace Employex.View
 
         private void ButtonApply_Click(object sender, RoutedEventArgs e)
         {
+            var item = (sender as FrameworkElement).DataContext;
+            int index = JobOffersList.Items.IndexOf(item);
+            var jobOffer = jobOffersCollection[index];
 
+            try
+            {
+                AplicationsApi aplicationsApi = new AplicationsApi();
+                aplicationsApi.AddAplicationToJobOffer(jobOffer.Username, jobOffer.JobOfferId);
+                CustomMessageBox.Show("Se ha registrado tu oferta de trabajo");
+            } 
+            catch(ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(406))
+                    CustomMessageBox.Show("Esta oferta de trabajo es tuya");
+                if (ex.ErrorCode.Equals(409))
+                    CustomMessageBox.Show("Ya has aplicado en esta oferta de trabajo");
+            }
         }
     }
 }
