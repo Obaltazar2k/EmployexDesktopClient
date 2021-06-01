@@ -123,6 +123,9 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilities\ByteToImageConverter.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
+    <Compile Include="View\AddEducation.xaml.cs">
+      <DependentUpon>AddEducation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddLaboralExperience.xaml.cs">
       <DependentUpon>AddLaboralExperience.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
     <Compile Include="View\GetJobOffer.xaml.cs">
       <DependentUpon>GetJobOffer.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddEducation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddLaboralExperience.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

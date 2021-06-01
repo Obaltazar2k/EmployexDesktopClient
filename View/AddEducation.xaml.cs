@@ -55,7 +55,7 @@ namespace Employex.View
             catch (ApiException ex)
             {
                 if (ex.ErrorCode == 500)
-                    CustomMessageBox.ShowOK("Error de conexión con la base de datos, intente mas tarde", "Usuario existente", "Aceptar");
+                    CustomMessageBox.ShowOK("Error de conexión con la base de datos, intente mas tarde", "Error de conexión", "Aceptar");
             }
         }
 

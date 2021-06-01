@@ -349,5 +349,14 @@ namespace Employex.Api
                 null);
         }
 
+        public void AddEducation(Education body, int? userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ApiResponse<object> AddEducationWithHttpInfo(Education body, int? userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
