@@ -42,17 +42,16 @@ namespace Employex.View
                 }
                 JobOffersList.ItemsSource = jobOffersCollection;
                 DataContext = jobOffersCollection;
-            } 
-            catch(ApiException ex)
-            {
-                if(ex.ErrorCode.Equals(404))
-                    CustomMessageBox.Show("No hay más ofertas que mostrar");
-            }
-            finally
-            {
+
                 ValidateButtons();
                 ScrollViewer.Visibility = Visibility.Visible;
+                ScrollViewer.ScrollToTop();
                 ProgressBar.Visibility = Visibility.Collapsed;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(404))
+                    CustomMessageBox.Show("No hay más ofertas que mostrar");
             }
         }
 
@@ -105,6 +104,7 @@ namespace Employex.View
             try
             {
                 page++;
+                PageTextBlock.Text = page.ToString();
                 GetJobOffers(page);
             }
             catch (ApiException ex)
@@ -120,12 +120,21 @@ namespace Employex.View
                 PreviousPageButton.IsEnabled = false;
             else
                 PreviousPageButton.IsEnabled = true;
-            PageTextBlock.Text = page.ToString();
 
             if (!jobOffersCollection.Count.Equals(10))
                 NextPageButton.IsEnabled = false;
             else
                 NextPageButton.IsEnabled = true;
+        }
+
+        private void UserTextBlock_Click(object sender, RoutedEventArgs e)
+        {
+            //NavigationService.Navigate(new ExternalProfileConsult());
+        }
+
+        private void ButtonApply_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

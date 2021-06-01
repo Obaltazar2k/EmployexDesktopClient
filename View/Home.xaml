@@ -186,19 +186,23 @@
                                             Text="{Binding Job}" >
                                         </TextBlock>
 
-                                        <TextBlock 
-                                            Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                        <Button  
+                                            Click="UserTextBlock_Click"
+                                            Style="{DynamicResource SecundaryButton}"
+                                            BorderBrush="Transparent"
+                                            Background="Transparent"
+                                            Content="{Binding Username}"
                                             FontWeight="DemiBold" 
                                             Foreground="#2A2A2A"
                                             Grid.ColumnSpan="2"
                                             Grid.Row="1" 
                                             HorizontalAlignment="Left" 
+                                            Padding="0"
                                             Margin="16 8 16 0"
-                                            TextAlignment="Center" 
-                                            VerticalAlignment="Bottom"
-                                            x:Name="UserTextBlock"
-                                            Text="{Binding Username}">
-                                        </TextBlock>
+                                            VerticalContentAlignment="Bottom"
+                                            HorizontalContentAlignment="Left"
+                                            x:Name="UserTextBlock">
+                                        </Button>
 
                                         <TextBlock 
                                             Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
@@ -278,13 +282,28 @@
                                         </ListView>
 
                                         <Button
-                                            x:Name="Button"
-                                            Style="{DynamicResource PrimaryButton }"
+                                            Click="ButtonApply_Click"
+                                            x:Name="ButtonApply"
                                             Content="Aplicar"
                                             Grid.Row="5"
                                             Margin="16 16 16 16"
                                             VerticalContentAlignment="Center" 
                                             HorizontalAlignment="Left">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource MaterialDesignRaisedAccentButton}" TargetType="{x:Type Button}">
+                                                    <Setter Property="FontSize" Value="14"/>
+                                                    <Setter Property="Foreground" Value="#FFF5F5"/>
+                                                    <Setter Property="Background" Value="#004AAD"/>
+                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger>
+                                                            <!-- Aquí debería ir el trigger para cambiar o quitar el contenido del botón     -->
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
                                         </Button>
                                     </Grid>
                                 </materialDesign:ColorZone>
