@@ -14,6 +14,7 @@ using System.Linq;
 using RestSharp;
 using Employex.Client;
 using Employex.Model;
+using System.Threading.Tasks;
 
 namespace Employex.Api
 {
@@ -21,7 +22,7 @@ namespace Employex.Api
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
         public interface IIndependientUserApi : IApiAccessor
-    {
+        {
         #region Synchronous Operations
         /// <summary>
         /// Get user by user id
@@ -32,7 +33,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>IndependientUser</returns>
-        IndependientUser GetIndependintUserById (int? userId);
+        IndependientUser GetIndependintUserById (string userId);
 
         /// <summary>
         /// Get user by user id
@@ -43,7 +44,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of IndependientUser</returns>
-        ApiResponse<IndependientUser> GetIndependintUserByIdWithHttpInfo (int? userId);
+        ApiResponse<IndependientUser> GetIndependintUserByIdWithHttpInfo (string userId);
         /// <summary>
         /// Register independient user
         /// </summary>
@@ -110,7 +111,7 @@ namespace Employex.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RegisterIndpendientUserAsyncWithHttpInfo (IndependientUser body);
         #endregion Asynchronous Operations
-    }
+        }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -226,7 +227,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>IndependientUser</returns>
-        public IndependientUser GetIndependintUserById (int? userId)
+        public IndependientUser GetIndependintUserById (string userId)
         {
              ApiResponse<IndependientUser> localVarResponse = GetIndependintUserByIdWithHttpInfo(userId);
              return localVarResponse.Data;
@@ -238,7 +239,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of IndependientUser</returns>
-        public ApiResponse< IndependientUser > GetIndependintUserByIdWithHttpInfo (int? userId)
+        public ApiResponse< IndependientUser > GetIndependintUserByIdWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -297,7 +298,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of IndependientUser</returns>
-        public async System.Threading.Tasks.Task<IndependientUser> GetIndependintUserByIdAsync (int? userId)
+        public async System.Threading.Tasks.Task<IndependientUser> GetIndependintUserByIdAsync (string userId)
         {
              ApiResponse<IndependientUser> localVarResponse = await GetIndependintUserByIdAsyncWithHttpInfo(userId);
              return localVarResponse.Data;
@@ -310,7 +311,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (IndependientUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo (int? userId)
+        public async System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -520,5 +521,14 @@ namespace Employex.Api
                 null);
         }
 
+        public Task<IndependientUser> GetIndependintUserByIdAsync(int? userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo(int? userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

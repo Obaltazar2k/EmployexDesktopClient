@@ -62,7 +62,7 @@ namespace Employex.Model
         /// <param name="country">Country where the user lives.</param>
         /// <param name="userStatus">User status (default to UserStatusEnum.Active).</param>
         /// <param name="profilePhoto">profilePhoto.</param>
-        public User(Guid? userId = default(Guid?), string email = default(string), string password = default(string), string city = default(string), string country = default(string), UserStatusEnum? userStatus = UserStatusEnum.Active, Media profilePhoto = default(Media))
+        public User(string userId = default(string), string email = default(string), string password = default(string), string city = default(string), string country = default(string), UserStatusEnum? userStatus = UserStatusEnum.Active, Media profilePhoto = default(Media))
         {
             // to ensure "email" is required (not null)
             if (email == null)
@@ -94,7 +94,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of the user</value>
         [DataMember(Name="user_id", EmitDefaultValue=false)]
-        public Guid? UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// User&#x27;s email
