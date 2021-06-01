@@ -38,7 +38,7 @@ namespace Employex.Model
         /// <param name="jobCategory">jobCategory.</param>
         /// <param name="location">Location where the job offer is.</param>
         /// <param name="media">Multimedia data related to the job offer.</param>
-        public JobOffer(int jobOfferId = default(int), string job = default(string), string description = default(string), JobCategory jobCategory = default(JobCategory), string location = default(string), List<Media> media = default(List<Media>))
+        public JobOffer(int jobOfferId = default(int), string job = default(string), string description = default(string), JobCategory jobCategory = default(JobCategory), string location = default(string), List<Media> media = default(List<Media>), string username = default(string))
         {
             // to ensure "job" is required (not null)
             if (job == null)
@@ -62,6 +62,7 @@ namespace Employex.Model
             this.JobCategory = jobCategory;
             this.Location = location;
             this.Media = media;
+            this.Username = username;
         }
         
         /// <summary>
@@ -106,6 +107,13 @@ namespace Employex.Model
         public List<Media> Media { get; set; }
 
         /// <summary>
+        /// Multimedia data related to the job offer
+        /// </summary>
+        /// <value>Multimedia data related to the job offer</value>
+        [DataMember(Name = "username", EmitDefaultValue = false)]
+        public string Username { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -119,6 +127,7 @@ namespace Employex.Model
             sb.Append("  JobCategory: ").Append(JobCategory).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Media: ").Append(Media).Append("\n");
+            sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -183,6 +192,11 @@ namespace Employex.Model
                     this.Media != null &&
                     input.Media != null &&
                     this.Media.SequenceEqual(input.Media)
+                ) &&
+                (
+                    this.Username == input.Username ||
+                    (this.Username != null &&
+                    this.Username.Equals(input.Username))
                 );
         }
 
@@ -207,6 +221,8 @@ namespace Employex.Model
                     hashCode = hashCode * 59 + this.Location.GetHashCode();
                 if (this.Media != null)
                     hashCode = hashCode * 59 + this.Media.GetHashCode();
+                if (this.Username != null)
+                    hashCode = hashCode * 59 + this.Username.GetHashCode();
                 return hashCode;
             }
         }
