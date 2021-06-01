@@ -78,5 +78,12 @@ namespace Employex.View
             mainWindow?.ChangeView(new AddLaboralExperience());
             return;
         }
+
+        private void EducationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new AddEducation());
+            return;
+        }
     }
 }

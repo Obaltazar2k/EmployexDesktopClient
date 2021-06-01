@@ -58,7 +58,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AddEducationAsync (Education body, int? userId);
+        System.Threading.Tasks.Task AddEducationAsync (Education body, string userId);
 
         /// <summary>
         /// Adds education info to an independient user
@@ -70,7 +70,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, int? userId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, string userId);
         #endregion Asynchronous Operations
     }
 
@@ -189,7 +189,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
-        public void AddEducation (Education body, int? userId)
+        public void AddEducation (Education body, string userId)
         {
              AddEducationWithHttpInfo(body, userId);
         }
@@ -201,7 +201,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> AddEducationWithHttpInfo (Education body, int? userId)
+        public ApiResponse<Object> AddEducationWithHttpInfo (Education body, string userId)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -272,7 +272,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AddEducationAsync (Education body, int? userId)
+        public async System.Threading.Tasks.Task AddEducationAsync (Education body, string userId)
         {
              await AddEducationAsyncWithHttpInfo(body, userId);
 
@@ -285,7 +285,7 @@ namespace Employex.Api
         /// <param name="body">Education object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, int? userId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, string userId)
         {
             // verify the required parameter 'body' is set
             if (body == null)

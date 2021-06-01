@@ -96,7 +96,7 @@
                             <StackPanel Width="220">
                                 <Button x:Name="LaboralExperienceButton" Content="Agregar experiencia laboral" Click="LaboralExperienceButton_Click"/>
                                 <Separator/>
-                                <Button Content="Agregar información de educación"/>
+                                <Button x:Name="EducationButton" Content="Agregar información de educación" Click="EducationButton_Click"/>
                                 <Separator/>
                                 <Button Content="Agregar sección de interes"/>
                             </StackPanel>

@@ -49,14 +49,14 @@ namespace Employex.View
                     var laboralExperience = generateLaboralExperience();
                     
                     var response = laboralExperienceApi.AddLaboralExperienceWithHttpInfo(laboralExperience, "adrian@gmail.com");
-                    CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
+                    CustomMessageBox.ShowOK("La experiencia laboral ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
                     BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }
             }
             catch(ApiException ex)
             {
                 if (ex.ErrorCode == 500)
-                    CustomMessageBox.ShowOK("Error de conexión con la base de datos, intente mas tarde", "Usuario existente", "Aceptar");
+                    CustomMessageBox.ShowOK("Error de conexión con la base de datos, intente mas tarde", "Error de conexión", "Aceptar");
             }
         }
 
