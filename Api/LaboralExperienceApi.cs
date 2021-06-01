@@ -33,7 +33,7 @@ namespace Employex.Api
         /// <param name="body">Laboral experience object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
-        void AddLaboralExperience (LaboralExperience body, int? userId);
+        void AddLaboralExperience (LaboralExperience body, string userId);
 
         /// <summary>
         /// Adds laboral experience info to an independient user
@@ -45,7 +45,7 @@ namespace Employex.Api
         /// <param name="body">Laboral experience object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AddLaboralExperienceWithHttpInfo (LaboralExperience body, int? userId);
+        ApiResponse<Object> AddLaboralExperienceWithHttpInfo (LaboralExperience body, string userId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -189,7 +189,7 @@ namespace Employex.Api
         /// <param name="body">Laboral experience object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
-        public void AddLaboralExperience (LaboralExperience body, int? userId)
+        public void AddLaboralExperience (LaboralExperience body, string userId)
         {
              AddLaboralExperienceWithHttpInfo(body, userId);
         }
@@ -201,7 +201,7 @@ namespace Employex.Api
         /// <param name="body">Laboral experience object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> AddLaboralExperienceWithHttpInfo (LaboralExperience body, int? userId)
+        public ApiResponse<Object> AddLaboralExperienceWithHttpInfo (LaboralExperience body, string userId)
         {
             // verify the required parameter 'body' is set
             if (body == null)

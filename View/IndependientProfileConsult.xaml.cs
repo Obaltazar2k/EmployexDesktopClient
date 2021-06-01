@@ -19,7 +19,20 @@ namespace Employex.View
             InitializeComponent();
         }
 
-        private void GetProfileInfo(int userID)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GetProfileInfo("adrian@gmail.com");
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
+            }
+        }
+
+        private void GetProfileInfo(string userID)
         {
             ProgressBar.Visibility = Visibility.Visible;
             ProfileScrollViewer.Visibility = Visibility.Collapsed;
@@ -33,6 +46,7 @@ namespace Employex.View
                 OcupationTextBlock.Text = independientUser.Ocupation;
                 LocationTextBlock.Text = independientUser.User.City + ", " + independientUser.User.Country;
                 DescriptionTextBlock.Text = independientUser.PersoanlDescription;
+                EmailTextBlock.Text = independientUser.User.Email;
                 ShowProfileImage(independientUser.User.ProfilePhoto.File);
             }
             catch (ApiException ex)
@@ -58,17 +72,11 @@ namespace Employex.View
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void LaboralExperienceButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                GetProfileInfo(5);
-            }
-            catch (ApiException ex)
-            {
-                if (ex.ErrorCode == 404)
-                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
-            }
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new AddLaboralExperience());
+            return;
         }
     }
 }
