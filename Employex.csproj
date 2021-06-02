@@ -94,12 +94,14 @@
     </ApplicationDefinition>
     <Compile Include="ApiClient.cs" />
     <Compile Include="Api\AplicationsApi.cs" />
+    <Compile Include="Api\CertificationApi.cs" />
     <Compile Include="Api\EducationApi.cs" />
     <Compile Include="Api\GeneralUserApi.cs" />
     <Compile Include="Api\IndependientUserApi.cs" />
     <Compile Include="Api\JobOfferApi.cs" />
     <Compile Include="Api\LaboralExperienceApi.cs" />
     <Compile Include="Api\OrganizationUserApi.cs" />
+    <Compile Include="Api\SectionApi.cs" />
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiException.cs" />
     <Compile Include="Client\ApiResponse.cs" />
