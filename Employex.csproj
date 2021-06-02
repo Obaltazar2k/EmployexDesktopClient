@@ -131,6 +131,9 @@
     <Compile Include="View\AddLaboralExperience.xaml.cs">
       <DependentUpon>AddLaboralExperience.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddSection.xaml.cs">
+      <DependentUpon>AddSection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AptitudesSelection.xaml.cs">
       <DependentUpon>AptitudesSelection.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddLaboralExperience.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

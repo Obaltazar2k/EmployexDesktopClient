@@ -98,7 +98,7 @@
                                 <Separator/>
                                 <Button x:Name="EducationButton" Content="Agregar información de educación" Click="EducationButton_Click"/>
                                 <Separator/>
-                                <Button Content="Agregar sección de interes"/>
+                                <Button x:Name="SectionButton" Content="Agregar sección de interes" Click="EducationButton_Click"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
 
