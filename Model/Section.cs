@@ -36,7 +36,7 @@ namespace Employex.Model
         /// <param name="title">Title of the section (required).</param>
         /// <param name="description">Main text of the section (required).</param>
         /// <param name="media">Multimedia data related to the section.</param>
-        public Section(Guid? sectionId = default(Guid?), string title = default(string), string description = default(string), List<Media> media = default(List<Media>))
+        public Section(int sectionId = default(int), string title = default(string), string description = default(string), List<Media> media = default(List<Media>))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -65,7 +65,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of the section</value>
         [DataMember(Name="section_id", EmitDefaultValue=false)]
-        public Guid? SectionId { get; set; }
+        public int SectionId { get; set; }
 
         /// <summary>
         /// Title of the section

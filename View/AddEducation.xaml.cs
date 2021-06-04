@@ -46,8 +46,8 @@ namespace Employex.View
                 {
                     EducationApi educationApi = new EducationApi();
                     var education = generateEducation();
-
-                    var response = educationApi.AddEducationWithHttpInfo(education, "adrian@gmail.com");
+                    var user = Configuration.Default.Username;
+                    var response = educationApi.AddEducationWithHttpInfo(education, user);
                     CustomMessageBox.ShowOK("La información educativa se ha sido registrada con éxito.", "Registro exitoso", "Aceptar");
                     BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }

@@ -125,6 +125,9 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilities\ByteToImageConverter.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
+    <Compile Include="View\AddCertification.xaml.cs">
+      <DependentUpon>AddCertification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddEducation.xaml.cs">
       <DependentUpon>AddEducation.xaml</DependentUpon>
     </Compile>
@@ -133,9 +136,6 @@
     </Compile>
     <Compile Include="View\AddSection.xaml.cs">
       <DependentUpon>AddSection.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AptitudesSelection.xaml.cs">
-      <DependentUpon>AptitudesSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -158,12 +158,10 @@
     <Compile Include="View\RegisterSelection.xaml.cs">
       <DependentUpon>RegisterSelection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TestAPI.xaml.cs">
-      <DependentUpon>TestAPI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\GetJobOffer.xaml.cs">
-      <DependentUpon>GetJobOffer.xaml</DependentUpon>
-    </Compile>
+    <Page Include="View\AddCertification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddEducation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,10 +171,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddSection.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AptitudesSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,14 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegisterSelection.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TestAPI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\GetJobOffer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

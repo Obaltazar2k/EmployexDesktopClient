@@ -38,15 +38,20 @@ namespace Employex.View
         {
             try
             {
-                SectionApi sectionApi = new SectionApi();
-                Section section = new Section(title: TitleTextBox.Text, description: DescriptionTextBox.Text, media: imagesList);
-                sectionApi.AddSection(section, "adrian@gmail.com");
-                CustomMessageBox.ShowOK("La sección de interés ha sido registrada con éxito.", "Registro exitoso", "Aceptar");
-                BackIcon_Clicked(new object(), new RoutedEventArgs());
+                if (VerificateFields())
+                {
+                    SectionApi sectionApi = new SectionApi();
+                    Section section = new Section(title: TitleTextBox.Text, description: DescriptionTextBox.Text, media: imagesList);
+                    var user = Configuration.Default.Username;
+                    sectionApi.AddSection(section, user);
+                    CustomMessageBox.ShowOK("La sección de interés ha sido registrada con éxito.", "Registro exitoso", "Aceptar");
+                    BackIcon_Clicked(new object(), new RoutedEventArgs());
+                }              
             }
             catch (ApiException ex)
             {
-                if (ex.ErrorCode == 400) { }
+                if (ex.ErrorCode == 500)
+                    CustomMessageBox.ShowOK("Error de conexión con la base de datos, intente mas tarde", "Error de conexión", "Aceptar");
             }
         }
 

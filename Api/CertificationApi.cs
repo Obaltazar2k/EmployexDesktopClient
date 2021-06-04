@@ -15,7 +15,7 @@ using RestSharp;
 using Employex.Client;
 using Employex.Model;
 
-namespace IO.Swagger.Api
+namespace Employex.Api
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -29,7 +29,7 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Certification object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace IO.Swagger.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Certification object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>

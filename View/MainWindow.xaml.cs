@@ -32,7 +32,7 @@ namespace Employex
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
         {
-            ChangeView(new AddSection());
+            ChangeView(new Login());
         }
     }
 }

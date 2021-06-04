@@ -40,7 +40,7 @@ namespace Employex.Model
         /// <param name="average">Average obtained upon completion of studies.</param>
         /// <param name="title">Title of studies taken (required).</param>
         /// <param name="university">University where the education was taken (required).</param>
-        public Education(Guid? educationId = default(Guid?), string description = default(string), string discipline = default(string), DateTime? endDate = default(DateTime?), DateTime? startDate = default(DateTime?), float? average = default(float?), string title = default(string), string university = default(string))
+        public Education(int educationId = default(int), string description = default(string), string discipline = default(string), DateTime? endDate = default(DateTime?), DateTime? startDate = default(DateTime?), float? average = default(float?), string title = default(string), string university = default(string))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -73,7 +73,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of education</value>
         [DataMember(Name="education_id", EmitDefaultValue=false)]
-        public Guid? EducationId { get; set; }
+        public int EducationId { get; set; }
 
         /// <summary>
         /// Talk about what the education is about

@@ -41,7 +41,7 @@ namespace Employex.Model
         /// <param name="sector">sector.</param>
         /// <param name="jobCategory">jobCategory.</param>
         /// <param name="location">Location where the work experience was lived.</param>
-        public LaboralExperience(Guid? laboralExperienceId = default(Guid?), string jobTitle = default(string), bool? currentJob = false, DateTime? endDate = default(DateTime?), DateTime? startDate = default(DateTime?), string companyName = default(string), Sector sector = default(Sector), JobCategory jobCategory = default(JobCategory), string location = default(string))
+        public LaboralExperience(int laboralExperienceId = default(int), string jobTitle = default(string), bool? currentJob = false, DateTime? endDate = default(DateTime?), DateTime? startDate = default(DateTime?), string companyName = default(string), Sector sector = default(Sector), JobCategory jobCategory = default(JobCategory), string location = default(string))
         {
             // to ensure "jobTitle" is required (not null)
             if (jobTitle == null)
@@ -75,7 +75,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of the laboral experience</value>
         [DataMember(Name="laboral_experience_id", EmitDefaultValue=false)]
-        public Guid? LaboralExperienceId { get; set; }
+        public int LaboralExperienceId { get; set; }
 
         /// <summary>
         /// Job&#x27;s title

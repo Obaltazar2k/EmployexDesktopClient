@@ -38,7 +38,7 @@ namespace Employex.Model
         /// <param name="expirationDate">Date the certification expires.</param>
         /// <param name="expeditionDate">Date the certification was issued.</param>
         /// <param name="title">Title of the certification taken (required).</param>
-        public Certification(Guid? credentialId = default(Guid?), string credentialUrl = default(string), string issuingCompany = default(string), DateTime? expirationDate = default(DateTime?), DateTime? expeditionDate = default(DateTime?), string title = default(string))
+        public Certification(int credentialId = default(int), string credentialUrl = default(string), string issuingCompany = default(string), DateTime? expirationDate = default(DateTime?), DateTime? expeditionDate = default(DateTime?), string title = default(string))
         {
             // to ensure "issuingCompany" is required (not null)
             if (issuingCompany == null)
@@ -69,7 +69,7 @@ namespace Employex.Model
         /// </summary>
         /// <value>Unique identifier of certification</value>
         [DataMember(Name="credential_id", EmitDefaultValue=false)]
-        public Guid? CredentialId { get; set; }
+        public int CredentialId { get; set; }
 
         /// <summary>
         /// Certification&#x27;s url

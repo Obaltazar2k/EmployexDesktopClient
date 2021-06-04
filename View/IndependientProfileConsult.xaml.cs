@@ -6,6 +6,8 @@ using WPFCustomMessageBox;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System;
+using Employex.Model;
+using System.Collections.ObjectModel;
 
 namespace Employex.View
 {
@@ -14,6 +16,7 @@ namespace Employex.View
     /// </summary>
     public partial class IndependientProfileConsult : Page
     {
+        private ObservableCollection<LaboralExperience> laboralExperiencesCollection;
         public IndependientProfileConsult()
         {
             InitializeComponent();
@@ -48,6 +51,20 @@ namespace Employex.View
                 DescriptionTextBlock.Text = independientUser.PersoanlDescription;
                 EmailTextBlock.Text = independientUser.User.Email;
                 ShowProfileImage(independientUser.User.ProfilePhoto.File);
+
+                var laboralExperiencesList = independientUser.LaboralExperience;
+                laboralExperiencesCollection = new ObservableCollection<LaboralExperience>();
+                if (laboralExperiencesList != null)
+                {
+                    foreach (LaboralExperience jobOffer in laboralExperiencesList)
+                    {
+                        if (jobOffer != null)
+                            laboralExperiencesCollection.Add(jobOffer);
+                    }
+                }
+                laboralExperienceList.ItemsSource = laboralExperiencesCollection;
+                DataContext = laboralExperiencesCollection;
+                laboralExperiencePanel.Visibility = Visibility.Visible;
             }
             catch (ApiException ex)
             {
@@ -92,5 +109,12 @@ namespace Employex.View
             mainWindow?.ChangeView(new AddSection());
             return;
         }
+
+        private void CertificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new AddCertification());
+            return;
+        }       
     }
 }

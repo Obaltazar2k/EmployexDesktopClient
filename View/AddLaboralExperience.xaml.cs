@@ -39,8 +39,8 @@ namespace Employex.View
                 {
                     LaboralExperienceApi laboralExperienceApi = new LaboralExperienceApi();
                     var laboralExperience = generateLaboralExperience();
-                    
-                    var response = laboralExperienceApi.AddLaboralExperienceWithHttpInfo(laboralExperience, "adrian@gmail.com");
+                    var user = Configuration.Default.Username;
+                    var response = laboralExperienceApi.AddLaboralExperienceWithHttpInfo(laboralExperience, user);
                     CustomMessageBox.ShowOK("La experiencia laboral ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
                     BackIcon_Clicked(new object(), new RoutedEventArgs());
                 }
