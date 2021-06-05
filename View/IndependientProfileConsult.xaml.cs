@@ -17,6 +17,10 @@ namespace Employex.View
     public partial class IndependientProfileConsult : Page
     {
         private ObservableCollection<LaboralExperience> laboralExperiencesCollection;
+        private ObservableCollection<Education> educationsCollection;
+        private ObservableCollection<Certification> certificationCollection;
+        private ObservableCollection<Section> sectionsCollection;
+        private readonly string user = Configuration.Default.Username;
         public IndependientProfileConsult()
         {
             InitializeComponent();
@@ -26,7 +30,7 @@ namespace Employex.View
         {
             try
             {
-                GetProfileInfo("adrian@gmail.com");
+                GetProfileInfo(user);
             }
             catch (ApiException ex)
             {
@@ -44,27 +48,16 @@ namespace Employex.View
             try
             {
                 var independientUser = independientUserApi.GetIndependintUserById(userID);
-                Console.Write(independientUser.Name);
                 NameTextBlock.Text = independientUser.Name + " " + independientUser.Surnames;
                 OcupationTextBlock.Text = independientUser.Ocupation;
                 LocationTextBlock.Text = independientUser.User.City + ", " + independientUser.User.Country;
                 DescriptionTextBlock.Text = independientUser.PersoanlDescription;
                 EmailTextBlock.Text = independientUser.User.Email;
                 ShowProfileImage(independientUser.User.ProfilePhoto.File);
-
-                var laboralExperiencesList = independientUser.LaboralExperience;
-                laboralExperiencesCollection = new ObservableCollection<LaboralExperience>();
-                if (laboralExperiencesList != null)
-                {
-                    foreach (LaboralExperience jobOffer in laboralExperiencesList)
-                    {
-                        if (jobOffer != null)
-                            laboralExperiencesCollection.Add(jobOffer);
-                    }
-                }
-                laboralExperienceList.ItemsSource = laboralExperiencesCollection;
-                DataContext = laboralExperiencesCollection;
-                laboralExperiencePanel.Visibility = Visibility.Visible;
+                ShowLaboralExperienceInfo(independientUser);
+                ShowEducationInfo(independientUser);
+                ShowCertifications(independientUser);
+                ShowSections(independientUser);
             }
             catch (ApiException ex)
             {
@@ -83,9 +76,75 @@ namespace Employex.View
             Image profileImage = new Image();
             using (MemoryStream stream = new MemoryStream(image))
             {
-                perfilImage.ImageSource = BitmapFrame.Create(stream,
-                                                  BitmapCreateOptions.None,
-                                                  BitmapCacheOption.OnLoad);
+                perfilImage.ImageSource = BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            }
+        }
+
+        private void ShowLaboralExperienceInfo(IndependientUser independientUser)
+        {
+            var laboralExperiencesList = independientUser.LaboralExperience;
+            laboralExperiencesCollection = new ObservableCollection<LaboralExperience>();
+            if (laboralExperiencesList != null)
+            {              
+                foreach (LaboralExperience jobOffer in laboralExperiencesList)
+                {
+                    if (jobOffer != null)
+                        laboralExperiencesCollection.Add(jobOffer);
+                }
+                laboralExperienceList.ItemsSource = laboralExperiencesCollection;
+                DataContext = laboralExperiencesCollection;
+                laboralExperiencePanel.Visibility = Visibility.Visible;
+            }           
+        }
+
+        private void ShowEducationInfo(IndependientUser independientUser)
+        {
+            var educationsList = independientUser.Education;
+            educationsCollection = new ObservableCollection<Education>();
+            if (educationsList != null)
+            {               
+                foreach (Education education in educationsList)
+                {
+                    if (education != null)
+                        educationsCollection.Add(education);
+                }
+                educationList.ItemsSource = educationsCollection;
+                DataContext = educationsCollection;
+                educationPanel.Visibility = Visibility.Visible;
+            }           
+        }
+
+        private void ShowCertifications(IndependientUser independientUser)
+        {
+            var certificationsList = independientUser.Certification;
+            certificationCollection = new ObservableCollection<Certification>();
+            if (certificationsList != null)
+            {
+                foreach (Certification certification in certificationsList)
+                {
+                    if (certification != null)
+                        certificationCollection.Add(certification);
+                }
+                certificationList.ItemsSource = certificationCollection;
+                DataContext = certificationCollection;
+                certificationPanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ShowSections(IndependientUser independientUser)
+        {
+            var sectionsList = independientUser.Section;
+            sectionsCollection = new ObservableCollection<Section>();
+            if (sectionsList != null)
+            {
+                foreach (Section section in sectionsList)
+                {
+                    if (section != null)
+                        sectionsCollection.Add(section);
+                }
+                sectionList.ItemsSource = sectionsCollection;
+                DataContext = sectionsCollection;
+                sectionPanel.Visibility = Visibility.Visible;
             }
         }
 
