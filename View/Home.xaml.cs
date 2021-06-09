@@ -16,9 +16,11 @@ namespace Employex.View
     {
         private ObservableCollection<JobOffer> jobOffersCollection;
         private int page { get; set; } = 1;
+        public bool isIndependient { get; set; }
 
-        public Home()
+        public Home(bool isIndependient)
         {
+            this.isIndependient = isIndependient;
             InitializeComponent();
         }
 

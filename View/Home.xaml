@@ -7,9 +7,11 @@
       xmlns:Converter="clr-namespace:Employex.Utilities"
       mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1080"
       Loaded="Page_Loaded"
-      Title="Home" Background="#E6E1E1">
+      Title="Home" Background="#E6E1E1"
+      Name="HomePage">
     <Page.Resources>
         <Converter:ByteToImageConverter x:Name="binaryConverter" x:Key="byteToImageConverter"/>
+        <Converter:IsEnabledConverter x:Name="enabledConverter" x:Key="isEneabledConverter" />
     </Page.Resources>
 
     <Grid UseLayoutRounding="True">
@@ -140,7 +142,7 @@
 
                 <ItemsControl x:Name="JobOffersList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate> 
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -288,7 +290,8 @@
                                             Grid.Row="5"
                                             Margin="16 16 16 16"
                                             VerticalContentAlignment="Center" 
-                                            HorizontalAlignment="Left">
+                                            HorizontalAlignment="Left"
+                                            Visibility="{Binding ElementName=HomePage, Path=isIndependient, Converter={StaticResource isEneabledConverter}}">
                                             <Button.Style>
                                                 <Style BasedOn="{StaticResource MaterialDesignRaisedAccentButton}" TargetType="{x:Type Button}">
                                                     <Setter Property="FontSize" Value="14"/>
