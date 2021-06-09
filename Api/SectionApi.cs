@@ -20,72 +20,72 @@ namespace Employex.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-        public interface IEducationApi : IApiAccessor
+        public interface ISectionApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
-        /// Adds education info to an independient user
+        /// Adds section info to an independient user
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
-        void AddEducation (Education body, int? userId);
+        void AddSection (Section body, string userId);
 
         /// <summary>
-        /// Adds education info to an independient user
+        /// Adds section info to an independient user
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AddEducationWithHttpInfo (Education body, int? userId);
+        ApiResponse<Object> AddSectionWithHttpInfo (Section body, string userId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Adds education info to an independient user
+        /// Adds section info to an independient user
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AddEducationAsync (Education body, string userId);
+        System.Threading.Tasks.Task AddSectionAsync (Section body, string userId);
 
         /// <summary>
-        /// Adds education info to an independient user
+        /// Adds section info to an independient user
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, string userId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> AddSectionAsyncWithHttpInfo (Section body, string userId);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-        public partial class EducationApi : IEducationApi
+        public partial class SectionApi : ISectionApi
     {
         private Employex.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EducationApi"/> class.
+        /// Initializes a new instance of the <see cref="SectionApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public EducationApi(String basePath)
+        public SectionApi(String basePath)
         {
             this.Configuration = new Employex.Client.Configuration { BasePath = basePath };
 
@@ -93,10 +93,10 @@ namespace Employex.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EducationApi"/> class
+        /// Initializes a new instance of the <see cref="SectionApi"/> class
         /// </summary>
         /// <returns></returns>
-        public EducationApi()
+        public SectionApi()
         {
             this.Configuration = Employex.Client.Configuration.Default;
 
@@ -104,12 +104,12 @@ namespace Employex.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EducationApi"/> class
+        /// Initializes a new instance of the <see cref="SectionApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public EducationApi(Employex.Client.Configuration configuration = null)
+        public SectionApi(Employex.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = Employex.Client.Configuration.Default;
@@ -183,34 +183,34 @@ namespace Employex.Api
         }
 
         /// <summary>
-        /// Adds education info to an independient user 
+        /// Adds section info to an independient user 
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns></returns>
-        public void AddEducation (Education body, string userId)
+        public void AddSection (Section body, string userId)
         {
-             AddEducationWithHttpInfo(body, userId);
+             AddSectionWithHttpInfo(body, userId);
         }
 
         /// <summary>
-        /// Adds education info to an independient user 
+        /// Adds section info to an independient user 
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> AddEducationWithHttpInfo (Education body, string userId)
+        public ApiResponse<Object> AddSectionWithHttpInfo (Section body, string userId)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EducationApi->AddEducation");
+                throw new ApiException(400, "Missing required parameter 'body' when calling SectionApi->AddSection");
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling EducationApi->AddEducation");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling SectionApi->AddSection");
 
-            var localVarPath = "/users/independient_user/{user_id}/education";
+            var localVarPath = "/users/independient_user/{user_id}/section";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -256,7 +256,7 @@ namespace Employex.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("AddEducation", localVarResponse);
+                Exception exception = ExceptionFactory("AddSection", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -266,35 +266,35 @@ namespace Employex.Api
         }
 
         /// <summary>
-        /// Adds education info to an independient user 
+        /// Adds section info to an independient user 
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AddEducationAsync (Education body, string userId)
+        public async System.Threading.Tasks.Task AddSectionAsync (Section body, string userId)
         {
-             await AddEducationAsyncWithHttpInfo(body, userId);
+             await AddSectionAsyncWithHttpInfo(body, userId);
 
         }
 
         /// <summary>
-        /// Adds education info to an independient user 
+        /// Adds section info to an independient user 
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">Education object that needs to be added to the catalog</param>
+        /// <param name="body">Section object that needs to be added to the catalog</param>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddEducationAsyncWithHttpInfo (Education body, string userId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddSectionAsyncWithHttpInfo (Section body, string userId)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling EducationApi->AddEducation");
+                throw new ApiException(400, "Missing required parameter 'body' when calling SectionApi->AddSection");
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling EducationApi->AddEducation");
+                throw new ApiException(400, "Missing required parameter 'userId' when calling SectionApi->AddSection");
 
-            var localVarPath = "/users/independient_user/{user_id}/education";
+            var localVarPath = "/users/independient_user/{user_id}/section";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -340,7 +340,7 @@ namespace Employex.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("AddEducation", localVarResponse);
+                Exception exception = ExceptionFactory("AddSection", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -349,14 +349,5 @@ namespace Employex.Api
                 null);
         }
 
-        public void AddEducation(Education body, int? userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ApiResponse<object> AddEducationWithHttpInfo(Education body, int? userId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
