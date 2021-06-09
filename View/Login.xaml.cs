@@ -29,7 +29,7 @@ namespace Employex.View
                 Configuration.Default.AccessToken = response;
                 Configuration.Default.Username = UserTextBox.Text;
                 Configuration.Default.Password = PasswordTextBox.Password;
-                NavigationService.Navigate(new IndependientProfileConsult());
+                NavigationService.Navigate(new Home());
                 //var mainWindow = (MainWindow)Application.Current.MainWindow;
                 //mainWindow?.ChangeView(new Home());
                 return;

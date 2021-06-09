@@ -14,6 +14,7 @@ using System.Linq;
 using RestSharp;
 using Employex.Client;
 using Employex.Model;
+using System.Threading.Tasks;
 
 namespace Employex.Api
 {
@@ -32,7 +33,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>IndependientUser</returns>
-        IndependientUser GetOrganizationUserById (int? userId);
+        IndependientUser GetOrganizationUserById (string userId);
 
         /// <summary>
         /// Get user by user id
@@ -43,7 +44,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of IndependientUser</returns>
-        ApiResponse<IndependientUser> GetOrganizationUserByIdWithHttpInfo (int? userId);
+        ApiResponse<IndependientUser> GetOrganizationUserByIdWithHttpInfo (string userId);
         /// <summary>
         /// Register organization user
         /// </summary>
@@ -226,9 +227,9 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>IndependientUser</returns>
-        public IndependientUser GetOrganizationUserById (int? userId)
+        public OrganizationUser GetOrganizationUserById (string userId)
         {
-             ApiResponse<IndependientUser> localVarResponse = GetOrganizationUserByIdWithHttpInfo(userId);
+             ApiResponse<OrganizationUser> localVarResponse = GetOrganizationUserByIdWithHttpInfo(userId);
              return localVarResponse.Data;
         }
 
@@ -238,7 +239,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of IndependientUser</returns>
-        public ApiResponse< IndependientUser > GetOrganizationUserByIdWithHttpInfo (int? userId)
+        public ApiResponse<OrganizationUser> GetOrganizationUserByIdWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -286,9 +287,9 @@ namespace Employex.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IndependientUser>(localVarStatusCode,
+            return new ApiResponse<OrganizationUser>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (IndependientUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
+                (OrganizationUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(OrganizationUser)));
         }
 
         /// <summary>
@@ -297,9 +298,9 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of IndependientUser</returns>
-        public async System.Threading.Tasks.Task<IndependientUser> GetOrganizationUserByIdAsync (int? userId)
+        public async System.Threading.Tasks.Task<OrganizationUser> GetOrganizationUserByIdAsync (string userId)
         {
-             ApiResponse<IndependientUser> localVarResponse = await GetOrganizationUserByIdAsyncWithHttpInfo(userId);
+             ApiResponse<OrganizationUser> localVarResponse = await GetOrganizationUserByIdAsyncWithHttpInfo(userId);
              return localVarResponse.Data;
 
         }
@@ -310,7 +311,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (IndependientUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetOrganizationUserByIdAsyncWithHttpInfo (int? userId)
+        public async System.Threading.Tasks.Task<ApiResponse<OrganizationUser>> GetOrganizationUserByIdAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -358,9 +359,9 @@ namespace Employex.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<IndependientUser>(localVarStatusCode,
+            return new ApiResponse<OrganizationUser>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (IndependientUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
+                (OrganizationUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(OrganizationUser)));
         }
 
         /// <summary>
@@ -520,5 +521,24 @@ namespace Employex.Api
                 null);
         }
 
+        IndependientUser IOrganizationUserApi.GetOrganizationUserById(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        ApiResponse<IndependientUser> IOrganizationUserApi.GetOrganizationUserByIdWithHttpInfo(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IndependientUser> GetOrganizationUserByIdAsync(int? userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ApiResponse<IndependientUser>> GetOrganizationUserByIdAsyncWithHttpInfo(int? userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
