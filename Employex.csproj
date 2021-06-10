@@ -125,6 +125,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilities\ByteToImageConverter.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
+    <Compile Include="Utilities\IsEnabledConverter.cs" />
     <Compile Include="View\AddCertification.xaml.cs">
       <DependentUpon>AddCertification.xaml</DependentUpon>
     </Compile>

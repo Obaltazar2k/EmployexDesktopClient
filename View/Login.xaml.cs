@@ -26,10 +26,15 @@ namespace Employex.View
             try
             {
                 var response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
-                Configuration.Default.AccessToken = response;
+                string[] res = response.Split('/');
+                Configuration.Default.KindOf = res[0];
+                Configuration.Default.AccessToken = res[1];
                 Configuration.Default.Username = UserTextBox.Text;
                 Configuration.Default.Password = PasswordTextBox.Password;
-                NavigationService.Navigate(new Home());
+                if (res[0].Equals("IND"))
+                    NavigationService.Navigate(new Home(true));
+                else
+                    NavigationService.Navigate(new Home(false));
                 //var mainWindow = (MainWindow)Application.Current.MainWindow;
                 //mainWindow?.ChangeView(new Home());
                 return;
