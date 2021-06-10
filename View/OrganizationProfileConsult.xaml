@@ -57,6 +57,23 @@
                             <GradientStop Color="#191626" Offset="0"/>
                         </LinearGradientBrush>
                     </Border.Background>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon
+                            Kind="ArrowBackCircle"
+                            Height="40" Width="45"
+                            Margin="10 10"
+                            Foreground="#FFFF"
+                            VerticalAlignment="Top" HorizontalAlignment="Center"
+                            MouseLeftButtonDown="BackIcon_Clicked"/>
+                    </Grid>
                 </Border>
 
                 <materialDesign:ColorZone Mode="Custom" Background="White" Grid.Column="0"

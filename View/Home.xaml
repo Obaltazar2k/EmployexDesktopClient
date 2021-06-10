@@ -140,7 +140,7 @@
 
                 <ItemsControl x:Name="JobOffersList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:Name="JobOffersTemplate">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -194,6 +194,7 @@
                                             Content="{Binding Username}"
                                             FontWeight="DemiBold" 
                                             Foreground="#2A2A2A"
+                                            materialDesign:ButtonAssist.CornerRadius="0"
                                             Grid.ColumnSpan="2"
                                             Grid.Row="1" 
                                             HorizontalAlignment="Left" 

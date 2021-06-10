@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using WPFCustomMessageBox;
 
 namespace Employex.View
@@ -129,7 +130,27 @@ namespace Employex.View
 
         private void UserTextBlock_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new ExternalProfileConsult());
+            string userEmail;
+            Button botonActual = (Button)sender;
+            userEmail = botonActual.Content.ToString();
+            try
+            {
+                OrganizationUserApi organizationUserApi = new OrganizationUserApi();
+                var profileConsult = organizationUserApi.GetOrganizationUserById(userEmail);
+
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new OrganizationProfileConsult(userEmail));
+                return;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(404))
+                {
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new IndependientProfileConsult(userEmail));
+                    return;
+                }                    
+            }
         }
 
         private void ButtonApply_Click(object sender, RoutedEventArgs e)
