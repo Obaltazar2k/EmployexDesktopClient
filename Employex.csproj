@@ -147,6 +147,9 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OrganizationProfileConsult.xaml.cs">
+      <DependentUpon>OrganizationProfileConsult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OrganizationRegister.xaml.cs">
       <DependentUpon>OrganizationRegister.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrganizationProfileConsult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

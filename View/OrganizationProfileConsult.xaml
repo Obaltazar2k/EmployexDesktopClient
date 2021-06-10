@@ -1,0 +1,341 @@
+﻿<Page x:Class="Employex.View.OrganizationProfileConsult"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Converter="clr-namespace:Employex.Utilities"
+      mc:Ignorable="d"
+      Loaded="Page_Loaded"
+      d:DesignHeight="600" d:DesignWidth="1080"
+      Title="OrganizationProfileConsult" Background="#E6E1E1">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ProgressBar
+            x:Name="ProgressBar"
+            Style="{DynamicResource MaterialDesignCircularProgressBar}"
+            IsIndeterminate="True"
+            Foreground="#004AAD"
+            Width="100" Height="100"
+            Grid.Row="1" />
+
+        <ScrollViewer x:Name="ProfileScrollViewer" Width="1080">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Column="0"
+                                  Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="7" VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Stretch" Margin="10 20 10.4 70" CornerRadius="10 10 0 0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                            <GradientStop Color="#004AAD" Offset="1" />
+                            <GradientStop Color="#191626" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon
+                            Kind="ArrowBackCircle"
+                            Height="40" Width="45"
+                            Margin="10 10"
+                            Foreground="#FFFF"
+                            VerticalAlignment="Top" HorizontalAlignment="Center"
+                            MouseLeftButtonDown="BackIcon_Clicked"/>
+                    </Grid>
+                </Border>
+
+                <materialDesign:ColorZone Mode="Custom" Background="White" Grid.Column="0"
+                                  Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="7" VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Stretch" Margin="10 135 10 15" CornerRadius="0 0 10 10" Height="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:PackIcon 
+                            Kind="Company" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                            Grid.Column="1"
+                            FontWeight="Bold" 
+                            Foreground="#2A2A2A"
+                            HorizontalAlignment="Left"
+                            Text="Nombre de empresa"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="NameTextBlock" >
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="Work" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                            Foreground="#2A2A2A"
+                            FontWeight="DemiBold"
+                            Grid.ColumnSpan="1"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0" 
+                            Text="Sector"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="SectorTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="Email" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            FontWeight="DemiBold" 
+                            Foreground="#2A2A2A"
+                            HorizontalAlignment="Left"
+                            Text="company@email"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="EmailTextBlock" >
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="Web" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            Foreground="#2A2A2A"
+                            Grid.ColumnSpan="1"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0" 
+                            Text="web site"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="WebSiteTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="Contact" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="4"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            Grid.Column="1"
+                            Grid.Row="4"
+                            FontWeight="DemiBold" 
+                            Foreground="#2A2A2A"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0"
+                            Text="Nombre de contacto"
+                            TextWrapping="WrapWithOverflow"
+                            TextAlignment="Left" 
+                            VerticalAlignment="Center"
+                            x:Name="ContactNameTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="ContactMail" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="5"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            Foreground="#2A2A2A"
+                            Grid.ColumnSpan="1"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0" 
+                            Text="contact@email"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="ContactEmailTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="ContactPhone" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="6"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            Foreground="#2A2A2A"
+                            Grid.ColumnSpan="1"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0" 
+                            Text="Numero contacto"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="ContactNumberTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="Location" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="7"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            Foreground="#2A2A2A"
+                            Grid.ColumnSpan="1"
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" 
+                            Margin="0 5 0 0" 
+                            Text="Ubicación"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="LocationTextBlock">
+                        </TextBlock>
+
+                        <materialDesign:PackIcon 
+                            Kind="About" 
+                            Foreground="#004AAD"
+                            Margin="10 0 15 0"
+                            Width="40" Height="40"
+                            Grid.Row="8"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                        </materialDesign:PackIcon>
+
+                        <TextBlock 
+                            FontSize="20" 
+                            FontWeight="Medium" 
+                            Foreground="#2A2A2A"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2" 
+                            Grid.Row="8" 
+                            HorizontalAlignment="Left" 
+                            Margin="0 10 0 10" 
+                            Text="Descripción"
+                            TextAlignment="Left"
+                            TextWrapping="WrapWithOverflow" 
+                            VerticalAlignment="Center" 
+                            x:Name="DescriptionTextBlock" >
+                        </TextBlock>
+                    </Grid>
+                </materialDesign:ColorZone>
+
+                <Ellipse Grid.Column="3" Grid.Row="1" Height="160" Width="160" HorizontalAlignment="Center">
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="White" />
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <Ellipse Grid.Column="3" Grid.Row="1" Height="150" Width="150" HorizontalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="perfilImage" ImageSource="/Utilities/Images/defaultAvatar.jpg" Stretch="Uniform"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

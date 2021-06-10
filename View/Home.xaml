@@ -196,6 +196,7 @@
                                             Content="{Binding Username}"
                                             FontWeight="DemiBold" 
                                             Foreground="#2A2A2A"
+                                            materialDesign:ButtonAssist.CornerRadius="0"
                                             Grid.ColumnSpan="2"
                                             Grid.Row="1" 
                                             HorizontalAlignment="Left" 

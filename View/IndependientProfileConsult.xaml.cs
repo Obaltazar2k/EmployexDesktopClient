@@ -20,10 +20,17 @@ namespace Employex.View
         private ObservableCollection<Education> educationsCollection;
         private ObservableCollection<Certification> certificationCollection;
         private ObservableCollection<Section> sectionsCollection;
-        private readonly string user = Configuration.Default.Username;
+        private readonly string user;
         public IndependientProfileConsult()
         {
             InitializeComponent();
+            user = Configuration.Default.Username;
+        }
+
+        public IndependientProfileConsult(string userEmail)
+        {
+            InitializeComponent();
+            user = userEmail;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -37,6 +44,14 @@ namespace Employex.View
                 if (ex.ErrorCode == 404)
                     MessageBox.Show("No hay más ofertas de trabajo que mostrar");
             }
+        }
+
+        private void BackIcon_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+            else
+                CustomMessageBox.ShowOK("No hay entrada a la cual volver.", "Error al navegar hacía atrás", "Aceptar");
         }
 
         private void GetProfileInfo(string userID)
