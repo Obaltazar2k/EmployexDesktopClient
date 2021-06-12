@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
 using Employex.Client;
+using System.Threading.Tasks;
 
 namespace Employex.Api
 {
@@ -21,7 +22,29 @@ namespace Employex.Api
     /// </summary>
     public interface IGeneralUserApi : IApiAccessor
     {
-        #region Synchronous Operations
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns></returns>
+        void GenerateNewToken(string username, string fullName);
+
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username, string fullName);
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -32,18 +55,7 @@ namespace Employex.Api
         /// <param name="username">The user name for login</param>
         /// <param name="password">The password for login in clear text</param>
         /// <returns>string</returns>
-        void GenerateNewToken(string username);
-
-        /// <summary>
-        /// The user generates a new validation token
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">The user name who generates the new token</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username);
+        #region Synchronous Operations
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -102,16 +114,16 @@ namespace Employex.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Logs user into the system
+        /// The user generates a new validation token
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">The user name for login</param>
-        /// <param name="password">The password for login in clear text</param>
-        /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task GenerateNewTokenAsync(string username);
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task GenerateNewTokenAsync(string username, string fullName);
 
         /// <summary>
         /// The user generates a new validation token
@@ -121,8 +133,9 @@ namespace Employex.Api
         /// </remarks>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username);
+        System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username, string fullName);
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -294,10 +307,11 @@ namespace Employex.Api
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
         /// <returns></returns>
-        public void GenerateNewToken(string username)
+        public void GenerateNewToken(string username, string fullName)
         {
-            GenerateNewTokenWithHttpInfo(username);
+            GenerateNewTokenWithHttpInfo(username, fullName);
         }
 
         /// <summary>
@@ -305,12 +319,16 @@ namespace Employex.Api
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username)
+        public ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username, string fullName)
         {
             // verify the required parameter 'username' is set
             if (username == null)
                 throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->GenerateNewToken");
+            // verify the required parameter 'fullName' is set
+            if (fullName == null)
+                throw new ApiException(400, "Missing required parameter 'fullName' when calling GeneralUserApi->GenerateNewToken");
 
             var localVarPath = "/users/new_token";
             var localVarPathParams = new Dictionary<String, String>();
@@ -333,6 +351,7 @@ namespace Employex.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (fullName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fullName", fullName)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
@@ -357,10 +376,11 @@ namespace Employex.Api
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GenerateNewTokenAsync(string username)
+        public async System.Threading.Tasks.Task GenerateNewTokenAsync(string username, string fullName)
         {
-            await GenerateNewTokenAsyncWithHttpInfo(username);
+            await GenerateNewTokenAsyncWithHttpInfo(username, fullName);
 
         }
 
@@ -369,12 +389,16 @@ namespace Employex.Api
         /// </summary>
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username, string fullName)
         {
             // verify the required parameter 'username' is set
             if (username == null)
                 throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->GenerateNewToken");
+            // verify the required parameter 'fullName' is set
+            if (fullName == null)
+                throw new ApiException(400, "Missing required parameter 'fullName' when calling GeneralUserApi->GenerateNewToken");
 
             var localVarPath = "/users/new_token";
             var localVarPathParams = new Dictionary<String, String>();
@@ -397,6 +421,7 @@ namespace Employex.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (fullName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fullName", fullName)); // query parameter
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,

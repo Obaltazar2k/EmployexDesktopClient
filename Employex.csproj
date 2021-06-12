@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -126,6 +127,7 @@
     <Compile Include="Utilities\ByteToImageConverter.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
     <Compile Include="Utilities\IsEnabledConverter.cs" />
+    <Compile Include="Utilities\Restarter.cs" />
     <Compile Include="View\AddCertification.xaml.cs">
       <DependentUpon>AddCertification.xaml</DependentUpon>
     </Compile>
@@ -161,6 +163,9 @@
     </Compile>
     <Compile Include="View\RegisterSelection.xaml.cs">
       <DependentUpon>RegisterSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ValidateUser.xaml.cs">
+      <DependentUpon>ValidateUser.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AddCertification.xaml">
       <SubType>Designer</SubType>
@@ -219,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegisterSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ValidateUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
