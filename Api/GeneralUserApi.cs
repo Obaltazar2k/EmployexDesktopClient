@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
 using Employex.Client;
+using System.Threading.Tasks;
 
 namespace Employex.Api
 {
@@ -21,6 +22,39 @@ namespace Employex.Api
     /// </summary>
     public interface IGeneralUserApi : IApiAccessor
     {
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns></returns>
+        void GenerateNewToken(string username, string fullName);
+
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username, string fullName);
+        /// <summary>
+        /// Logs user into the system
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for login</param>
+        /// <param name="password">The password for login in clear text</param>
+        /// <returns>string</returns>
         #region Synchronous Operations
         /// <summary>
         /// Logs user into the system
@@ -64,8 +98,44 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> LogoutUserWithHttpInfo();
+        void ValidateUser(string username, string token);
+
+        /// <summary>
+        /// The user is validated so he can enter in the aplication
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ValidateUserWithHttpInfo(string username, string token);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task GenerateNewTokenAsync(string username, string fullName);
+
+        /// <summary>
+        /// The user generates a new validation token
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username, string fullName);
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -108,6 +178,19 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> LogoutUserAsyncWithHttpInfo();
+        System.Threading.Tasks.Task ValidateUserAsync(string username, string token);
+
+        /// <summary>
+        /// The user is validated so he can enter in the aplication
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ValidateUserAsyncWithHttpInfo(string username, string token);
         #endregion Asynchronous Operations
     }
 
@@ -217,6 +300,145 @@ namespace Employex.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// The user generates a new validation token 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns></returns>
+        public void GenerateNewToken(string username, string fullName)
+        {
+            GenerateNewTokenWithHttpInfo(username, fullName);
+        }
+
+        /// <summary>
+        /// The user generates a new validation token 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> GenerateNewTokenWithHttpInfo(string username, string fullName)
+        {
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->GenerateNewToken");
+            // verify the required parameter 'fullName' is set
+            if (fullName == null)
+                throw new ApiException(400, "Missing required parameter 'fullName' when calling GeneralUserApi->GenerateNewToken");
+
+            var localVarPath = "/users/new_token";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (fullName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fullName", fullName)); // query parameter
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GenerateNewToken", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
+        }
+
+        /// <summary>
+        /// The user generates a new validation token 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task GenerateNewTokenAsync(string username, string fullName)
+        {
+            await GenerateNewTokenAsyncWithHttpInfo(username, fullName);
+
+        }
+
+        /// <summary>
+        /// The user generates a new validation token 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name who generates the new token</param>
+        /// <param name="fullName">The independient or organization user full name</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GenerateNewTokenAsyncWithHttpInfo(string username, string fullName)
+        {
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->GenerateNewToken");
+            // verify the required parameter 'fullName' is set
+            if (fullName == null)
+                throw new ApiException(400, "Missing required parameter 'fullName' when calling GeneralUserApi->GenerateNewToken");
+
+            var localVarPath = "/users/new_token";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (fullName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fullName", fullName)); // query parameter
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GenerateNewToken", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
         }
 
         /// <summary>
@@ -501,6 +723,145 @@ namespace Employex.Api
                 null);
         }
 
+        /// <summary>
+        /// The user is validated so he can enter in the aplication 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns></returns>
+        public void ValidateUser(string username, string token)
+        {
+            ValidateUserWithHttpInfo(username, token);
+        }
+
+        /// <summary>
+        /// The user is validated so he can enter in the aplication 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> ValidateUserWithHttpInfo(string username, string token)
+        {
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->ValidateUser");
+            // verify the required parameter 'token' is set
+            if (token == null)
+                throw new ApiException(400, "Missing required parameter 'token' when calling GeneralUserApi->ValidateUser");
+
+            var localVarPath = "/users/validation";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (token != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "token", token)); // query parameter
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ValidateUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
+        }
+
+        /// <summary>
+        /// The user is validated so he can enter in the aplication 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ValidateUserAsync(string username, string token)
+        {
+            await ValidateUserAsyncWithHttpInfo(username, token);
+
+        }
+
+        /// <summary>
+        /// The user is validated so he can enter in the aplication 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="username">The user name for vaidation</param>
+        /// <param name="token">The token for te account validation</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ValidateUserAsyncWithHttpInfo(string username, string token)
+        {
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling GeneralUserApi->ValidateUser");
+            // verify the required parameter 'token' is set
+            if (token == null)
+                throw new ApiException(400, "Missing required parameter 'token' when calling GeneralUserApi->ValidateUser");
+
+            var localVarPath = "/users/validation";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (username != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "username", username)); // query parameter
+            if (token != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "token", token)); // query parameter
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ValidateUser", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
+
+        }
     }
 }
 

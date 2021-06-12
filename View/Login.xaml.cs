@@ -25,7 +25,7 @@ namespace Employex.View
             GeneralUserApi generalUserApi = new GeneralUserApi();
             try
             {
-                var response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
+                string response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
                 string[] res = response.Split('/');
                 Configuration.Default.KindOf = res[0];
                 Configuration.Default.AccessToken = res[1];
@@ -42,13 +42,19 @@ namespace Employex.View
             {
                 if (ex.ErrorCode == 401)
                     CustomMessageBox.Show("Credenciales incorrectas");
+                if (ex.ErrorCode == 423)
+                {
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new ValidateUser(UserTextBox.Text, ex.ErrorContent));
+                    return;
+                }
             }
         }
 
         private void RegisterButton_Clicked(object sender, RoutedEventArgs e)
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new AddLaboralExperience());
+            mainWindow?.ChangeView(new RegisterSelection());
             return;
         }
     }

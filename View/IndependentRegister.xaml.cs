@@ -10,7 +10,6 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using WPFCustomMessageBox;
-using Employex.Utilities;
 
 namespace Employex.View
 {
@@ -69,13 +68,22 @@ namespace Employex.View
 
                     var response = independientUserApi.RegisterIndpendientUserWithHttpInfo(independientUser);
                     CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
-                    //BackIcon_Clicked(new object(), new RoutedEventArgs());
+
+                    string fullName = independientUser.Name + " " + independientUser.Surnames;
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new ValidateUser(independientUser.User.Email, fullName));
+                    return;
                 }               
             }
             catch (ApiException ex)
             {
-                if (ex.ErrorCode == 400)
+                if (ex.ErrorCode == 401)
                     CustomMessageBox.ShowOK("Ya existe un usuario con el correo " + EmailTextBox.Text, "Usuario existente", "Aceptar");
+                if (ex.ErrorCode == 500)
+                {
+                    CustomMessageBox.ShowOK("Ocurrió un error en la conexión con la base de datos. Por favor intentelo más tarde", "Error de conexión", "Aceptar");
+                    Restarter.RestarEmployex();
+                }                  
             }           
         }
 
