@@ -32,7 +32,7 @@ namespace Employex.View
                 Configuration.Default.Username = UserTextBox.Text;
                 Configuration.Default.Password = PasswordTextBox.Password;
                 if (res[0].Equals("IND"))
-                    NavigationService.Navigate(new Home(true));
+                    NavigationService.Navigate(new IndependientProfileConsult());
                 else
                     NavigationService.Navigate(new Home(false));
                 //var mainWindow = (MainWindow)Application.Current.MainWindow;

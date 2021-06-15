@@ -68,7 +68,8 @@ namespace Employex.View
                 LocationTextBlock.Text = independientUser.User.City + ", " + independientUser.User.Country;
                 DescriptionTextBlock.Text = independientUser.PersoanlDescription;
                 EmailTextBlock.Text = independientUser.User.Email;
-                ShowProfileImage(independientUser.User.ProfilePhoto.File);
+                if (independientUser.User.ProfilePhoto != null)
+                    ShowProfileImage(independientUser.User.ProfilePhoto.File);
                 ShowLaboralExperienceInfo(independientUser);
                 ShowEducationInfo(independientUser);
                 ShowCertifications(independientUser);
