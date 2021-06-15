@@ -74,13 +74,21 @@ namespace Employex.View
 
                     var response = organizationtUserApi.RegisterOrganizationUserWithHttpInfo(organizationUser);
                     CustomMessageBox.ShowOK("El usuario ha sido registrado con éxito.", "Registro exitoso", "Aceptar");
-                    BackIcon_Clicked(new object(), new RoutedEventArgs());
+
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new ValidateUser(organizationUser.User.Email, organizationUser.Name));
+                    return;
                 }
             }
             catch (ApiException ex)
             {
-                if (ex.ErrorCode == 400)
+                if (ex.ErrorCode == 401)
                     CustomMessageBox.ShowOK("Ya existe un usuario con el correo " + EmailTextBox.Text, "Usuario existente", "Aceptar");
+                if (ex.ErrorCode == 500)
+                {
+                    CustomMessageBox.ShowOK("Ocurrió un error en la conexión con la base de datos. Por favor intentelo más tarde", "Error de conexión", "Aceptar");
+                    Restarter.RestarEmployex();
+                }
             }
         }
 
