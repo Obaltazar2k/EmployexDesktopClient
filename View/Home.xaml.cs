@@ -167,5 +167,21 @@ namespace Employex.View
                     CustomMessageBox.Show("Ya has aplicado en esta oferta de trabajo");
             }
         }
+
+        private void ConsultProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (isIndependient)
+            {
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new IndependientProfileConsult());
+                return;
+            }
+            else
+            {
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new OrganizationProfileConsult());
+                return;
+            }           
+        }
     }
 }
