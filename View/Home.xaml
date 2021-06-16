@@ -6,7 +6,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:Converter="clr-namespace:Employex.Utilities"
       mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1080"
-      Loaded="Page_Loaded"
       Title="Home" Background="#E6E1E1"
       Name="HomePage">
     <Page.Resources>

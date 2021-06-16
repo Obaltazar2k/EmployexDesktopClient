@@ -23,6 +23,7 @@ namespace Employex.View
         {
             this.isIndependient = isIndependient;
             InitializeComponent();
+            GetJobOffers(page);
         }
 
         private async void GetJobOffers(int page)
@@ -75,24 +76,13 @@ namespace Employex.View
             return;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                GetJobOffers(page);
-            }
-            catch (ApiException ex)
-            {
-                if (ex.ErrorCode == 404)
-                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
-            }
-        }
-
         private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 page--;
+                PreviousPageButton.IsEnabled = false;
+                NextPageButton.IsEnabled = false;
                 GetJobOffers(page);
             }
             catch (ApiException ex)
@@ -107,6 +97,8 @@ namespace Employex.View
             try
             {
                 page++;
+                PreviousPageButton.IsEnabled = false;
+                NextPageButton.IsEnabled = false;
                 PageTextBlock.Text = page.ToString();
                 GetJobOffers(page);
             }

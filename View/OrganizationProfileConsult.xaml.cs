@@ -76,7 +76,8 @@ namespace Employex.View
                 ContactNumberTextBlock.Text = organizationUser.ContactPhone;
                 DescriptionTextBlock.Text = organizationUser.About;
                 LocationTextBlock.Text = organizationUser.User.City + ", " + organizationUser.User.Country + " CP: " + organizationUser.ZipCode.ToString();
-                ShowProfileImage(organizationUser.User.ProfilePhoto.File);
+                if (organizationUser.User.ProfilePhoto != null)
+                    ShowProfileImage(organizationUser.User.ProfilePhoto.File);
             }
             catch (ApiException ex)
             {
