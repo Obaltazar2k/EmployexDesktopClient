@@ -1,5 +1,6 @@
 ﻿using Employex.Api;
 using Employex.Client;
+using Employex.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,12 +10,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPFCustomMessageBox;
 
 namespace Employex.View
@@ -25,6 +22,7 @@ namespace Employex.View
     public partial class OrganizationProfileConsult : Page
     {
         private readonly string user;
+        OrganizationUser organizationUser;
         public OrganizationProfileConsult()
         {
             InitializeComponent();
@@ -66,7 +64,7 @@ namespace Employex.View
             OrganizationUserApi organizationUserApi = new OrganizationUserApi();
             try
             {
-                var organizationUser = organizationUserApi.GetOrganizationUserById(userID);
+                organizationUser = organizationUserApi.GetOrganizationUserById(userID);
                 NameTextBlock.Text = organizationUser.Name;
                 SectorTextBlock.Text = "Sector: " + organizationUser.WorkSector.ToString().ToLowerInvariant();
                 EmailTextBlock.Text = organizationUser.User.Email;
@@ -97,6 +95,13 @@ namespace Employex.View
             {
                 perfilImage.ImageSource = BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
             }
+        }
+
+        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new EditOrganizationProfile(organizationUser));
+            return;
         }
     }
 }

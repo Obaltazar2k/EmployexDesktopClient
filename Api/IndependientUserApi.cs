@@ -46,6 +46,29 @@ namespace Employex.Api
         /// <returns>ApiResponse of IndependientUser</returns>
         ApiResponse<IndependientUser> GetIndependintUserByIdWithHttpInfo (string userId);
         /// <summary>
+        /// Patch user by id
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns></returns>
+        void PatchIndependintUserById(IndependientUser body, string userId);
+
+        /// <summary>
+        /// Patch user by id
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> PatchIndependintUserByIdWithHttpInfo(IndependientUser body, string userId);
+        /// <summary>
         /// Register independient user
         /// </summary>
         /// <remarks>
@@ -90,6 +113,29 @@ namespace Employex.Api
         /// <returns>Task of ApiResponse (IndependientUser)</returns>
         System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo (int? userId);
         /// <summary>
+        /// Patch user by id
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task PatchIndependintUserByIdAsync(IndependientUser body, string userId);
+
+        /// <summary>
+        /// Patch user by id
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> PatchIndependintUserByIdAsyncWithHttpInfo(IndependientUser body, string userId);
+        /// <summary>
         /// Register independient user
         /// </summary>
         /// <remarks>
@@ -116,7 +162,7 @@ namespace Employex.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-        public partial class IndependientUserApi : IIndependientUserApi
+    public partial class IndependientUserApi : IIndependientUserApi
     {
         private Employex.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
@@ -181,7 +227,7 @@ namespace Employex.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Employex.Client.Configuration Configuration {get; set;}
+        public Employex.Client.Configuration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -227,10 +273,10 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>IndependientUser</returns>
-        public IndependientUser GetIndependintUserById (string userId)
+        public IndependientUser GetIndependintUserById(string userId)
         {
-             ApiResponse<IndependientUser> localVarResponse = GetIndependintUserByIdWithHttpInfo(userId);
-             return localVarResponse.Data;
+            ApiResponse<IndependientUser> localVarResponse = GetIndependintUserByIdWithHttpInfo(userId);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -239,7 +285,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of IndependientUser</returns>
-        public ApiResponse< IndependientUser > GetIndependintUserByIdWithHttpInfo (string userId)
+        public ApiResponse<IndependientUser> GetIndependintUserByIdWithHttpInfo(string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -275,11 +321,11 @@ namespace Employex.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -289,7 +335,7 @@ namespace Employex.Api
 
             return new ApiResponse<IndependientUser>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (IndependientUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
+                (IndependientUser)this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
         }
 
         /// <summary>
@@ -298,10 +344,10 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of IndependientUser</returns>
-        public async System.Threading.Tasks.Task<IndependientUser> GetIndependintUserByIdAsync (string userId)
+        public async System.Threading.Tasks.Task<IndependientUser> GetIndependintUserByIdAsync(string userId)
         {
-             ApiResponse<IndependientUser> localVarResponse = await GetIndependintUserByIdAsyncWithHttpInfo(userId);
-             return localVarResponse.Data;
+            ApiResponse<IndependientUser> localVarResponse = await GetIndependintUserByIdAsyncWithHttpInfo(userId);
+            return localVarResponse.Data;
 
         }
 
@@ -311,7 +357,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (IndependientUser)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo (string userId)
+        public async System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetIndependintUserByIdAsyncWithHttpInfo(string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -347,11 +393,11 @@ namespace Employex.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
@@ -361,7 +407,174 @@ namespace Employex.Api
 
             return new ApiResponse<IndependientUser>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (IndependientUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
+                (IndependientUser)this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(IndependientUser)));
+        } 
+
+        /// <summary>
+        /// Patch user by id 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns></returns>
+        public void PatchIndependintUserById(IndependientUser body, string userId)
+        {
+            PatchIndependintUserByIdWithHttpInfo(body, userId);
+        }
+
+        /// <summary>
+        /// Patch user by id 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> PatchIndependintUserByIdWithHttpInfo(IndependientUser body, string userId)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling IndependientUserApi->PatchIndependintUserById");
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling IndependientUserApi->PatchIndependintUserById");
+
+            var localVarPath = "/users/independient_user/{user_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+            // authentication (oAuthSample) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PatchIndependintUserById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
+        }
+
+        /// <summary>
+        /// Patch user by id 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task PatchIndependintUserByIdAsync(IndependientUser body, string userId)
+        {
+            await PatchIndependintUserByIdAsyncWithHttpInfo(body, userId);
+
+        }
+
+        /// <summary>
+        /// Patch user by id 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Independient user object to patch</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> PatchIndependintUserByIdAsyncWithHttpInfo(IndependientUser body, string userId)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling IndependientUserApi->PatchIndependintUserById");
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling IndependientUserApi->PatchIndependintUserById");
+
+            var localVarPath = "/users/independient_user/{user_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+            // authentication (oAuthSample) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PatchIndependintUserById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
         }
 
         /// <summary>

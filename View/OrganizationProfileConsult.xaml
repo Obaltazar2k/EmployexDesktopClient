@@ -99,6 +99,21 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
+                        <materialDesign:PopupBox 
+                            PlacementMode="BottomAndAlignRightEdges" 
+                            StaysOpen="False" 
+                            Margin="0"
+                            Height="50"
+                            Width="40"
+                            Grid.Column="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Foreground="#004AAD">
+                            <StackPanel Width="220">
+                                <Button x:Name="EditProfileButton" Content="Editar datos generales" Click="EditProfileButton_Click"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+
                         <materialDesign:PackIcon 
                             Kind="Company" 
                             Foreground="#004AAD"

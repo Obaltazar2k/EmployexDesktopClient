@@ -46,6 +46,29 @@ namespace Employex.Api
         /// <returns>ApiResponse of IndependientUser</returns>
         ApiResponse<IndependientUser> GetOrganizationUserByIdWithHttpInfo (string userId);
         /// <summary>
+        /// Patch organization user
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns></returns>
+        void PatchOrganizationUserById(OrganizationUser body, string userId);
+
+        /// <summary>
+        /// Patch organization user
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> PatchOrganizationUserByIdWithHttpInfo(OrganizationUser body, string userId);
+        /// <summary>
         /// Register organization user
         /// </summary>
         /// <remarks>
@@ -89,6 +112,29 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (IndependientUser)</returns>
         System.Threading.Tasks.Task<ApiResponse<IndependientUser>> GetOrganizationUserByIdAsyncWithHttpInfo (int? userId);
+        /// <summary>
+        /// Patch organization user
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task PatchOrganizationUserByIdAsync(OrganizationUser body, string userId);
+
+        /// <summary>
+        /// Patch organization user
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> PatchOrganizationUserByIdAsyncWithHttpInfo(OrganizationUser body, string userId);
         /// <summary>
         /// Register organization user
         /// </summary>
@@ -362,6 +408,173 @@ namespace Employex.Api
             return new ApiResponse<OrganizationUser>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
                 (OrganizationUser) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(OrganizationUser)));
+        }
+
+        /// <summary>
+        /// Patch organization user 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns></returns>
+        public void PatchOrganizationUserById(OrganizationUser body, string userId)
+        {
+            PatchOrganizationUserByIdWithHttpInfo(body, userId);
+        }
+
+        /// <summary>
+        /// Patch organization user 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> PatchOrganizationUserByIdWithHttpInfo(OrganizationUser body, string userId)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling OrganizationUserApi->PatchOrganizationUserById");
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling OrganizationUserApi->PatchOrganizationUserById");
+
+            var localVarPath = "/users/organization_user/{user_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+            // authentication (oAuthSample) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PatchOrganizationUserById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
+        }
+
+        /// <summary>
+        /// Patch organization user 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task PatchOrganizationUserByIdAsync(OrganizationUser body, string userId)
+        {
+            await PatchOrganizationUserByIdAsyncWithHttpInfo(body, userId);
+
+        }
+
+        /// <summary>
+        /// Patch organization user 
+        /// </summary>
+        /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body">Organization user object to register</param>
+        /// <param name="userId">Unique identifier of the user</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> PatchOrganizationUserByIdAsyncWithHttpInfo(OrganizationUser body, string userId)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling OrganizationUserApi->PatchOrganizationUserById");
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new ApiException(400, "Missing required parameter 'userId' when calling OrganizationUserApi->PatchOrganizationUserById");
+
+            var localVarPath = "/users/organization_user/{user_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (userId != null) localVarPathParams.Add("user_id", this.Configuration.ApiClient.ParameterToString(userId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+            // authentication (oAuthSample) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PATCH, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PatchOrganizationUserById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                null);
         }
 
         /// <summary>
