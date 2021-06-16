@@ -140,6 +140,12 @@
     <Compile Include="View\AddSection.xaml.cs">
       <DependentUpon>AddSection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditIndependientProfile.xaml.cs">
+      <DependentUpon>EditIndependientProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditOrganizationProfile.xaml.cs">
+      <DependentUpon>EditOrganizationProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -180,6 +186,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditIndependientProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrganizationProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

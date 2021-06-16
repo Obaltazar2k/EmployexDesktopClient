@@ -5,7 +5,6 @@ using Employex.Client;
 using WPFCustomMessageBox;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System;
 using Employex.Model;
 using System.Collections.ObjectModel;
 
@@ -21,6 +20,7 @@ namespace Employex.View
         private ObservableCollection<Certification> certificationCollection;
         private ObservableCollection<Section> sectionsCollection;
         private readonly string user;
+        IndependientUser independientUser;
         public IndependientProfileConsult()
         {
             InitializeComponent();
@@ -62,7 +62,7 @@ namespace Employex.View
             IndependientUserApi independientUserApi = new IndependientUserApi();
             try
             {
-                var independientUser = independientUserApi.GetIndependintUserById(userID);
+                independientUser = independientUserApi.GetIndependintUserById(userID);
                 NameTextBlock.Text = independientUser.Name + " " + independientUser.Surnames;
                 OcupationTextBlock.Text = independientUser.Ocupation;
                 LocationTextBlock.Text = independientUser.User.City + ", " + independientUser.User.Country;
@@ -189,6 +189,13 @@ namespace Employex.View
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow?.ChangeView(new AddCertification());
             return;
-        }       
+        }
+
+        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new EditIndependientProfile(independientUser));
+            return;
+        }
     }
 }

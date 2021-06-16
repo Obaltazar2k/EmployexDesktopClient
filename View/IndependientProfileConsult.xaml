@@ -116,6 +116,8 @@
                                 <Button x:Name="SectionButton" Content="Agregar sección de interes" Click="SectionButton_Click"/>
                                 <Separator/>
                                 <Button x:Name="CertificationButton" Content="Agregar certificación" Click="CertificationButton_Click"/>
+                                <Separator/>
+                                <Button x:Name="EditProfileButton" Content="Editar datos generales" Click="EditProfileButton_Click"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
 
