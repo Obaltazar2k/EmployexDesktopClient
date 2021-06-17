@@ -31,6 +31,7 @@ namespace Employex.View
         {
             InitializeComponent();
             user = userEmail;
+            ManageProfileButton.Visibility = Visibility.Collapsed;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

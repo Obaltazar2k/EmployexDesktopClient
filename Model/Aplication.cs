@@ -27,7 +27,7 @@ namespace Employex.Model
     /// Aplication in a job offer from an independient user
     /// </summary>
     [DataContract]
-        public partial class Aplication :  IEquatable<Aplication>, IValidatableObject
+    public partial class Aplication : IEquatable<Aplication>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Aplication" /> class.
@@ -36,7 +36,8 @@ namespace Employex.Model
         /// <param name="aproved">Flah to know if the aplication was aproved or not (required) (default to false).</param>
         /// <param name="independientUserId">From who is the aplication.</param>
         /// <param name="jobOfferId">Job offer&#x27;s id.</param>
-        public Aplication(DateTime? date = default(DateTime?), bool? aproved = false, Guid? independientUserId = default(Guid?), Guid? jobOfferId = default(Guid?))
+        /// <param name="userId">User&#x27;s id.</param>
+        public Aplication(DateTime? date = default(DateTime?), bool? aproved = false, int? independientUserId = default(int?), int? jobOfferId = default(int?), string userId = default(string))
         {
             // to ensure "date" is required (not null)
             if (date == null)
@@ -58,13 +59,14 @@ namespace Employex.Model
             }
             this.IndependientUserId = independientUserId;
             this.JobOfferId = jobOfferId;
+            this.UserId = userId;
         }
-        
+
         /// <summary>
         /// Date on which was applied for the job
         /// </summary>
         /// <value>Date on which was applied for the job</value>
-        [DataMember(Name="date", EmitDefaultValue=false)]
+        [DataMember(Name = "date", EmitDefaultValue = false)]
         [JsonConverter(typeof(SwaggerDateConverter))]
         public DateTime? Date { get; set; }
 
@@ -72,22 +74,29 @@ namespace Employex.Model
         /// Flah to know if the aplication was aproved or not
         /// </summary>
         /// <value>Flah to know if the aplication was aproved or not</value>
-        [DataMember(Name="aproved", EmitDefaultValue=false)]
+        [DataMember(Name = "aproved", EmitDefaultValue = false)]
         public bool? Aproved { get; set; }
 
         /// <summary>
         /// From who is the aplication
         /// </summary>
         /// <value>From who is the aplication</value>
-        [DataMember(Name="independient_user_id", EmitDefaultValue=false)]
-        public Guid? IndependientUserId { get; set; }
+        [DataMember(Name = "independient_user_id", EmitDefaultValue = false)]
+        public int? IndependientUserId { get; set; }
 
         /// <summary>
         /// Job offer&#x27;s id
         /// </summary>
         /// <value>Job offer&#x27;s id</value>
-        [DataMember(Name="job_offer_id", EmitDefaultValue=false)]
-        public Guid? JobOfferId { get; set; }
+        [DataMember(Name = "job_offer_id", EmitDefaultValue = false)]
+        public int? JobOfferId { get; set; }
+
+        /// <summary>
+        /// User&#x27;s id
+        /// </summary>
+        /// <value>User&#x27;s id</value>
+        [DataMember(Name = "user_id", EmitDefaultValue = false)]
+        public string UserId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,10 +110,11 @@ namespace Employex.Model
             sb.Append("  Aproved: ").Append(Aproved).Append("\n");
             sb.Append("  IndependientUserId: ").Append(IndependientUserId).Append("\n");
             sb.Append("  JobOfferId: ").Append(JobOfferId).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -134,26 +144,31 @@ namespace Employex.Model
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Date == input.Date ||
                     (this.Date != null &&
                     this.Date.Equals(input.Date))
-                ) && 
+                ) &&
                 (
                     this.Aproved == input.Aproved ||
                     (this.Aproved != null &&
                     this.Aproved.Equals(input.Aproved))
-                ) && 
+                ) &&
                 (
                     this.IndependientUserId == input.IndependientUserId ||
                     (this.IndependientUserId != null &&
                     this.IndependientUserId.Equals(input.IndependientUserId))
-                ) && 
+                ) &&
                 (
                     this.JobOfferId == input.JobOfferId ||
                     (this.JobOfferId != null &&
                     this.JobOfferId.Equals(input.JobOfferId))
+                ) &&
+                (
+                    this.UserId == input.UserId ||
+                    (this.UserId != null &&
+                    this.UserId.Equals(input.UserId))
                 );
         }
 
@@ -174,6 +189,8 @@ namespace Employex.Model
                     hashCode = hashCode * 59 + this.IndependientUserId.GetHashCode();
                 if (this.JobOfferId != null)
                     hashCode = hashCode * 59 + this.JobOfferId.GetHashCode();
+                if (this.UserId != null)
+                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 return hashCode;
             }
         }

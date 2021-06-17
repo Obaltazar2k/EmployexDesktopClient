@@ -33,6 +33,7 @@ namespace Employex.View
         {
             InitializeComponent();
             user = userEmail;
+            ManageProfileButton.Visibility = Visibility.Collapsed;
         }
 
         private void BackIcon_Clicked(object sender, RoutedEventArgs e)

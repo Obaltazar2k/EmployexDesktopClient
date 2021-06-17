@@ -107,7 +107,8 @@
                             Grid.Column="3"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Foreground="#004AAD">
+                            Foreground="#004AAD"
+                            x:Name="ManageProfileButton">
                             <StackPanel Width="220">
                                 <Button x:Name="LaboralExperienceButton" Content="Agregar experiencia laboral" Click="LaboralExperienceButton_Click"/>
                                 <Separator/>
@@ -395,7 +396,7 @@
                                             FontWeight="Normal"
                                             HorizontalAlignment="Left"
                                             Margin="10 5 0 3" 
-                                            Text="{Binding Location, StringFormat=Categoría de empleo: {0}}"
+                                            Text="{Binding JobCategory, StringFormat=Categoría de empleo: {0}}"
                                             TextAlignment="Left"
                                             TextWrapping="WrapWithOverflow" 
                                             VerticalAlignment="Center" 

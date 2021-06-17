@@ -83,6 +83,7 @@ namespace Employex.View
                 page--;
                 PreviousPageButton.IsEnabled = false;
                 NextPageButton.IsEnabled = false;
+                PageTextBlock.Text = page.ToString();
                 GetJobOffers(page);
             }
             catch (ApiException ex)
@@ -155,7 +156,7 @@ namespace Employex.View
 
             try
             {
-                AplicationsApi aplicationsApi = new AplicationsApi();
+                JobOfferApi aplicationsApi = new JobOfferApi();
                 aplicationsApi.AddAplicationToJobOffer(jobOffer.Username, jobOffer.JobOfferId);
                 CustomMessageBox.Show("Se ha registrado tu oferta de trabajo");
             } 
@@ -182,6 +183,13 @@ namespace Employex.View
                 mainWindow?.ChangeView(new OrganizationProfileConsult());
                 return;
             }           
+        }
+
+        private void PublishedJobOffersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new PublishedJobOffers());
+            return;
         }
     }
 }

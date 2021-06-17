@@ -108,7 +108,8 @@
                             Grid.Column="3"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Foreground="#004AAD">
+                            Foreground="#004AAD"
+                            x:Name="ManageProfileButton">
                             <StackPanel Width="220">
                                 <Button x:Name="EditProfileButton" Content="Editar datos generales" Click="EditProfileButton_Click"/>
                             </StackPanel>

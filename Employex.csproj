@@ -125,6 +125,7 @@
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilities\ByteToImageConverter.cs" />
+    <Compile Include="Utilities\DTO\AplicationInfo.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
     <Compile Include="Utilities\IsEnabledConverter.cs" />
     <Compile Include="Utilities\Restarter.cs" />
@@ -139,6 +140,9 @@
     </Compile>
     <Compile Include="View\AddSection.xaml.cs">
       <DependentUpon>AddSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ApplicantsConsult.xaml.cs">
+      <DependentUpon>ApplicantsConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditIndependientProfile.xaml.cs">
       <DependentUpon>EditIndependientProfile.xaml</DependentUpon>
@@ -164,6 +168,9 @@
     <Compile Include="View\IndependientProfileConsult.xaml.cs">
       <DependentUpon>IndependientProfileConsult.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PublishedJobOffers.xaml.cs">
+      <DependentUpon>PublishedJobOffers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PublishJobOffer.xaml.cs">
       <DependentUpon>PublishJobOffer.xaml</DependentUpon>
     </Compile>
@@ -186,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ApplicantsConsult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\IndependientProfileConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PublishedJobOffers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
