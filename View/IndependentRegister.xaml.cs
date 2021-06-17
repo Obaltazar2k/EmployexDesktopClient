@@ -48,7 +48,7 @@ namespace Employex.View
 
                     generalUser.City = CityTextBox.Text;
                     generalUser.Country = CountryTextBox.Text;
-                    generalUser.Password = PasswordTextBox.Password;
+                    generalUser.Password = Encrypt.GetSHA256(PasswordTextBox.Password);
                                         
                     if (myStream != null)
                     {

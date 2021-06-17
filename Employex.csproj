@@ -125,7 +125,7 @@
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Utilities\ByteToImageConverter.cs" />
-    <Compile Include="Utilities\DTO\AplicationInfo.cs" />
+    <Compile Include="Utilities\Encrypt.cs" />
     <Compile Include="Utilities\FieldsVerificator.cs" />
     <Compile Include="Utilities\IsEnabledConverter.cs" />
     <Compile Include="Utilities\Restarter.cs" />
