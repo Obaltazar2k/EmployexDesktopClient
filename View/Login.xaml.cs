@@ -3,9 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Employex.Api;
 using Employex.Client;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
+using Employex.Utilities;
 using WPFCustomMessageBox;
 
 namespace Employex.View
@@ -25,7 +23,7 @@ namespace Employex.View
             GeneralUserApi generalUserApi = new GeneralUserApi();
             try
             {
-                string response = generalUserApi.LoginUser(UserTextBox.Text, PasswordTextBox.Password);
+                string response = generalUserApi.LoginUser(UserTextBox.Text, Encrypt.GetSHA256(PasswordTextBox.Password));
                 string[] res = response.Split('/');
                 Configuration.Default.KindOf = res[0];
                 Configuration.Default.AccessToken = res[1];
