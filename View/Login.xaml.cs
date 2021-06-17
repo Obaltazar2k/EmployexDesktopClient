@@ -35,8 +35,6 @@ namespace Employex.View
                     NavigationService.Navigate(new Home(true));
                 else
                     NavigationService.Navigate(new Home(false));
-                //var mainWindow = (MainWindow)Application.Current.MainWindow;
-                //mainWindow?.ChangeView(new Home());
                 return;
             } catch (ApiException ex)
             {

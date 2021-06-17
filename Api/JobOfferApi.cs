@@ -34,7 +34,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns></returns>
-        void AddAplicationToJobOffer (int? userId, int? jobOfferId);
+        void AddAplicationToJobOffer (string userId, int? jobOfferId);
 
         /// <summary>
         /// Adds an aplication to a specified job offer
@@ -46,7 +46,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> AddAplicationToJobOfferWithHttpInfo (int? userId, int? jobOfferId);
+        ApiResponse<Object> AddAplicationToJobOfferWithHttpInfo (string userId, int? jobOfferId);
         /// <summary>
         /// Add a new job offer to the catalog
         /// </summary>
@@ -99,7 +99,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>List&lt;Aplication&gt;</returns>
-        List<Aplication> GetJobOffersAplications (int? userId, int? jobOfferId);
+        List<Aplication> GetJobOffersAplications (string userId, int? jobOfferId);
 
         /// <summary>
         /// Returns a list of aplications in a specified job offer published by the user
@@ -111,7 +111,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>ApiResponse of List&lt;Aplication&gt;</returns>
-        ApiResponse<List<Aplication>> GetJobOffersAplicationsWithHttpInfo (int? userId, int? jobOfferId);
+        ApiResponse<List<Aplication>> GetJobOffersAplicationsWithHttpInfo (string userId, int? jobOfferId);
         /// <summary>
         /// Returns a list of job offers published by the user
         /// </summary>
@@ -121,7 +121,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>List&lt;JobOffer&gt;</returns>
-        List<JobOffer> GetJobOffersPublishedByTheUser (int? userId);
+        List<JobOffer> GetJobOffersPublishedByTheUser (string userId);
 
         /// <summary>
         /// Returns a list of job offers published by the user
@@ -132,7 +132,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of List&lt;JobOffer&gt;</returns>
-        ApiResponse<List<JobOffer>> GetJobOffersPublishedByTheUserWithHttpInfo (int? userId);
+        ApiResponse<List<JobOffer>> GetJobOffersPublishedByTheUserWithHttpInfo (string userId);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -145,7 +145,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task AddAplicationToJobOfferAsync (int? userId, int? jobOfferId);
+        System.Threading.Tasks.Task AddAplicationToJobOfferAsync (string userId, int? jobOfferId);
 
         /// <summary>
         /// Adds an aplication to a specified job offer
@@ -157,7 +157,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> AddAplicationToJobOfferAsyncWithHttpInfo (int? userId, int? jobOfferId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> AddAplicationToJobOfferAsyncWithHttpInfo (string userId, int? jobOfferId);
         /// <summary>
         /// Add a new job offer to the catalog
         /// </summary>
@@ -210,7 +210,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of List&lt;Aplication&gt;</returns>
-        System.Threading.Tasks.Task<List<Aplication>> GetJobOffersAplicationsAsync (int? userId, int? jobOfferId);
+        System.Threading.Tasks.Task<List<Aplication>> GetJobOffersAplicationsAsync (string userId, int? jobOfferId);
 
         /// <summary>
         /// Returns a list of aplications in a specified job offer published by the user
@@ -222,7 +222,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of ApiResponse (List&lt;Aplication&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Aplication>>> GetJobOffersAplicationsAsyncWithHttpInfo (int? userId, int? jobOfferId);
+        System.Threading.Tasks.Task<ApiResponse<List<Aplication>>> GetJobOffersAplicationsAsyncWithHttpInfo (string userId, int? jobOfferId);
         /// <summary>
         /// Returns a list of job offers published by the user
         /// </summary>
@@ -232,7 +232,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of List&lt;JobOffer&gt;</returns>
-        System.Threading.Tasks.Task<List<JobOffer>> GetJobOffersPublishedByTheUserAsync (int? userId);
+        System.Threading.Tasks.Task<List<JobOffer>> GetJobOffersPublishedByTheUserAsync (string userId);
 
         /// <summary>
         /// Returns a list of job offers published by the user
@@ -243,7 +243,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (List&lt;JobOffer&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<JobOffer>>> GetJobOffersPublishedByTheUserAsyncWithHttpInfo (int? userId);
+        System.Threading.Tasks.Task<ApiResponse<List<JobOffer>>> GetJobOffersPublishedByTheUserAsyncWithHttpInfo (string userId);
         #endregion Asynchronous Operations
     }
 
@@ -362,7 +362,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns></returns>
-        public void AddAplicationToJobOffer (int? userId, int? jobOfferId)
+        public void AddAplicationToJobOffer (string userId, int? jobOfferId)
         {
              AddAplicationToJobOfferWithHttpInfo(userId, jobOfferId);
         }
@@ -374,7 +374,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> AddAplicationToJobOfferWithHttpInfo (int? userId, int? jobOfferId)
+        public ApiResponse<Object> AddAplicationToJobOfferWithHttpInfo (string userId, int? jobOfferId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -437,7 +437,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task AddAplicationToJobOfferAsync (int? userId, int? jobOfferId)
+        public async System.Threading.Tasks.Task AddAplicationToJobOfferAsync (string userId, int? jobOfferId)
         {
              await AddAplicationToJobOfferAsyncWithHttpInfo(userId, jobOfferId);
 
@@ -450,7 +450,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddAplicationToJobOfferAsyncWithHttpInfo (int? userId, int? jobOfferId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> AddAplicationToJobOfferAsyncWithHttpInfo (string userId, int? jobOfferId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -811,7 +811,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>List&lt;Aplication&gt;</returns>
-        public List<Aplication> GetJobOffersAplications (int? userId, int? jobOfferId)
+        public List<Aplication> GetJobOffersAplications (string userId, int? jobOfferId)
         {
              ApiResponse<List<Aplication>> localVarResponse = GetJobOffersAplicationsWithHttpInfo(userId, jobOfferId);
              return localVarResponse.Data;
@@ -824,7 +824,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>ApiResponse of List&lt;Aplication&gt;</returns>
-        public ApiResponse< List<Aplication> > GetJobOffersAplicationsWithHttpInfo (int? userId, int? jobOfferId)
+        public ApiResponse< List<Aplication> > GetJobOffersAplicationsWithHttpInfo (string userId, int? jobOfferId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -888,7 +888,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of List&lt;Aplication&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Aplication>> GetJobOffersAplicationsAsync (int? userId, int? jobOfferId)
+        public async System.Threading.Tasks.Task<List<Aplication>> GetJobOffersAplicationsAsync (string userId, int? jobOfferId)
         {
              ApiResponse<List<Aplication>> localVarResponse = await GetJobOffersAplicationsAsyncWithHttpInfo(userId, jobOfferId);
              return localVarResponse.Data;
@@ -902,7 +902,7 @@ namespace Employex.Api
         /// <param name="userId">Unique identifier of the user</param>
         /// <param name="jobOfferId">Unique identifier of the job offer</param>
         /// <returns>Task of ApiResponse (List&lt;Aplication&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<Aplication>>> GetJobOffersAplicationsAsyncWithHttpInfo (int? userId, int? jobOfferId)
+        public async System.Threading.Tasks.Task<ApiResponse<List<Aplication>>> GetJobOffersAplicationsAsyncWithHttpInfo (string userId, int? jobOfferId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -965,7 +965,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>List&lt;JobOffer&gt;</returns>
-        public List<JobOffer> GetJobOffersPublishedByTheUser (int? userId)
+        public List<JobOffer> GetJobOffersPublishedByTheUser (string userId)
         {
              ApiResponse<List<JobOffer>> localVarResponse = GetJobOffersPublishedByTheUserWithHttpInfo(userId);
              return localVarResponse.Data;
@@ -977,7 +977,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>ApiResponse of List&lt;JobOffer&gt;</returns>
-        public ApiResponse< List<JobOffer> > GetJobOffersPublishedByTheUserWithHttpInfo (int? userId)
+        public ApiResponse< List<JobOffer> > GetJobOffersPublishedByTheUserWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -1036,7 +1036,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of List&lt;JobOffer&gt;</returns>
-        public async System.Threading.Tasks.Task<List<JobOffer>> GetJobOffersPublishedByTheUserAsync (int? userId)
+        public async System.Threading.Tasks.Task<List<JobOffer>> GetJobOffersPublishedByTheUserAsync (string userId)
         {
              ApiResponse<List<JobOffer>> localVarResponse = await GetJobOffersPublishedByTheUserAsyncWithHttpInfo(userId);
              return localVarResponse.Data;
@@ -1049,7 +1049,7 @@ namespace Employex.Api
         /// <exception cref="Employex.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Unique identifier of the user</param>
         /// <returns>Task of ApiResponse (List&lt;JobOffer&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<JobOffer>>> GetJobOffersPublishedByTheUserAsyncWithHttpInfo (int? userId)
+        public async System.Threading.Tasks.Task<ApiResponse<List<JobOffer>>> GetJobOffersPublishedByTheUserAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
