@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Employex.Api;
+using Employex.Client;
+using Employex.Utilities;
+using WPFCustomMessageBox;
 
 namespace Employex.View
 {
@@ -20,9 +20,31 @@ namespace Employex.View
 
         private void LoginButton_Clicked(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new Home());
-            return;
+            GeneralUserApi generalUserApi = new GeneralUserApi();
+            try
+            {
+                string response = generalUserApi.LoginUser(UserTextBox.Text, Encrypt.GetSHA256(PasswordTextBox.Password));
+                string[] res = response.Split('/');
+                Configuration.Default.KindOf = res[0];
+                Configuration.Default.AccessToken = res[1];
+                Configuration.Default.Username = UserTextBox.Text;
+                Configuration.Default.Password = PasswordTextBox.Password;
+                if (res[0].Equals("IND"))
+                    NavigationService.Navigate(new Home(true));
+                else
+                    NavigationService.Navigate(new Home(false));
+                return;
+            } catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 401)
+                    CustomMessageBox.Show("Credenciales incorrectas");
+                if (ex.ErrorCode == 423)
+                {
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new ValidateUser(UserTextBox.Text, ex.ErrorContent));
+                    return;
+                }
+            }
         }
 
         private void RegisterButton_Clicked(object sender, RoutedEventArgs e)

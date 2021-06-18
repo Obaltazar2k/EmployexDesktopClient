@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Employex.Api;
+using Employex.Client;
+using Employex.Model;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WPFCustomMessageBox;
 
 namespace Employex.View
 {
@@ -20,18 +16,197 @@ namespace Employex.View
     /// </summary>
     public partial class Home : Page
     {
-        public Home()
+        private ObservableCollection<JobOffer> jobOffersCollection;
+        private int page { get; set; } = 1;
+        public bool isIndependient { get; set; }
+
+        public Home(bool isIndependient)
         {
+            this.isIndependient = isIndependient;
             InitializeComponent();
-            getJobOffers();
+            GetJobOffers(page);
         }
 
-        public void getJobOffers()
+        private async void GetJobOffers(int page)
         {
-            ApiClient apiClient = new ApiClient();
-            var jobOffersList = apiClient.GetJobOffers();
+            ProgressBar.Visibility = Visibility.Visible;
+            ScrollViewer.Visibility = Visibility.Collapsed;
 
-            JobOffersList.ItemsSource = jobOffersList;
+            JobOfferApi jobOfferApi = new JobOfferApi();
+            try
+            {
+                var jobOffersList = await jobOfferApi.GetJobOffersAsync(page);
+                jobOffersCollection = new ObservableCollection<JobOffer>();
+                if (jobOffersList != null)
+                {
+                    foreach (JobOffer jobOffer in jobOffersList)
+                    {
+                        if (jobOffer != null)
+                            jobOffersCollection.Add(jobOffer);
+                    }
+                }
+                JobOffersList.ItemsSource = jobOffersCollection;
+                DataContext = jobOffersCollection;
+
+                ValidateButtons();
+                ScrollViewer.Visibility = Visibility.Visible;
+                ScrollViewer.ScrollToTop();
+                ProgressBar.Visibility = Visibility.Collapsed;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(404))
+                {
+                    CustomMessageBox.Show("No hay más ofertas que mostrar");
+                    ProgressBar.Visibility = Visibility.Collapsed;
+                    ValidateButtons();
+                }
+            }
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Configuration.Default.AccessToken = null;
+            Configuration.Default.Username = null;
+            Configuration.Default.Password = null;
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new Login());
+            return;
+        }
+
+        private void PubishJobOfferButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigated += NavigationService_Navigated;
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new PublishJobOffer(isIndependient));
+            return;
+        }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                page--;
+                PreviousPageButton.IsEnabled = false;
+                NextPageButton.IsEnabled = false;
+                PageTextBlock.Text = page.ToString();
+                GetJobOffers(page);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
+            }
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                page++;
+                PreviousPageButton.IsEnabled = false;
+                NextPageButton.IsEnabled = false;
+                PageTextBlock.Text = page.ToString();
+                GetJobOffers(page);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                    MessageBox.Show("No hay más ofertas de trabajo que mostrar");
+            }
+        }
+
+        private void ValidateButtons()
+        {
+            if (page.Equals(1))
+                PreviousPageButton.IsEnabled = false;
+            else
+                PreviousPageButton.IsEnabled = true;
+
+            if (jobOffersCollection != null)
+            {
+                if (!jobOffersCollection.Count.Equals(10))
+                    NextPageButton.IsEnabled = false;
+                else
+                    NextPageButton.IsEnabled = true;
+            }
+            else
+                NextPageButton.IsEnabled = false;
+        }
+
+        private void UserTextBlock_Click(object sender, RoutedEventArgs e)
+        {
+            string userEmail;
+            Button botonActual = (Button)sender;
+            userEmail = botonActual.Content.ToString();
+            try
+            {
+                OrganizationUserApi organizationUserApi = new OrganizationUserApi();
+                var profileConsult = organizationUserApi.GetOrganizationUserById(userEmail);
+
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new OrganizationProfileConsult(userEmail));
+                return;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(404))
+                {
+                    var mainWindow = (MainWindow)Application.Current.MainWindow;
+                    mainWindow?.ChangeView(new IndependientProfileConsult(userEmail));
+                    return;
+                }                    
+            }
+        }
+
+        private void ButtonApply_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as FrameworkElement).DataContext;
+            int index = JobOffersList.Items.IndexOf(item);
+            var jobOffer = jobOffersCollection[index];
+
+            try
+            {
+                JobOfferApi aplicationsApi = new JobOfferApi();
+                aplicationsApi.AddAplicationToJobOffer(jobOffer.Username, jobOffer.JobOfferId);
+                CustomMessageBox.Show("Se ha registrado tu aplicación en la oferta de trabajo");
+            } 
+            catch(ApiException ex)
+            {
+                if (ex.ErrorCode.Equals(406))
+                    CustomMessageBox.Show("Esta oferta de trabajo es tuya");
+                if (ex.ErrorCode.Equals(409))
+                    CustomMessageBox.Show("Ya has aplicado en esta oferta de trabajo");
+            }
+        }
+
+        private void ConsultProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (isIndependient)
+            {
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new IndependientProfileConsult());
+                return;
+            }
+            else
+            {
+                var mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow?.ChangeView(new OrganizationProfileConsult());
+                return;
+            }           
+        }
+
+        private void PublishedJobOffersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow?.ChangeView(new PublishedJobOffers());
+            return;
+        }
+
+        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        {
+            //NavigationService.Refresh();
+        }
+
     }
 }

@@ -1,0 +1,228 @@
+﻿<Page x:Class="Employex.View.ApplicantsConsult"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:Converter="clr-namespace:Employex.Utilities"
+      mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="1080"
+      Title="Consulta de aplicantes" Background="#E6E1E1"
+      Name="ApplicantsConsultPage">
+
+    <Grid UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border 
+            Grid.ColumnSpan="6" 
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch">
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                    <GradientStop Color="#004AAD" Offset="1" />
+                    <GradientStop Color="#191626" Offset="0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <TextBlock 
+                Text="CONSULTAR APLICANTES" 
+                HorizontalAlignment="Center"
+                Foreground="#FFFFFF"
+                FontWeight="Bold"
+                FontSize="40" 
+                VerticalAlignment="Center" 
+                Margin="0 10 0 10">
+            </TextBlock>
+        </Border>
+
+        <materialDesign:PackIcon
+            Kind="ArrowBackCircle"
+            Height="40" Width="45"
+            Foreground="#FFFF"
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"
+            Grid.Column="0" Grid.Row="0"
+            MouseLeftButtonDown="BackIcon_Clicked"/>
+
+        <ProgressBar
+            x:Name="ProgressBar"
+            Style="{DynamicResource MaterialDesignCircularProgressBar}"
+            IsIndeterminate="True"
+            Foreground="#004AAD"
+            Width="100" Height="100"
+            Grid.Row="1"
+            Grid.ColumnSpan="6"
+            Grid.RowSpan="2"/>
+
+        <ScrollViewer x:Name="ScrollViewer" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="7" Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ItemsControl x:Name="ApplicantsList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <materialDesign:ColorZone 
+                                        Background="#FFF" 
+                                        CornerRadius="10"
+                                        Height="Auto"
+                                        HorizontalAlignment="Stretch" 
+                                        Margin="32 8 32 16" 
+                                        materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                        Mode="Custom" 
+                                        VerticalAlignment="Stretch" >
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Button 
+                                            FontWeight="Bold"
+                                            FontSize="34"
+                                            Grid.ColumnSpan="2"
+                                            Foreground="#2A2A2A"
+                                            HorizontalAlignment="Left"
+                                            Margin="16 8 16 0"
+                                            Height="Auto"
+                                            BorderBrush="Transparent"
+                                            Background="Transparent"
+                                            VerticalContentAlignment="Bottom"
+                                            HorizontalContentAlignment="Left"
+                                            Padding="0"
+                                            VerticalAlignment="Center" 
+                                            x:Name="UsernameTextBlock"
+                                            Content="{Binding UserId}"
+                                            Click="UserTextBlock_Click">
+                                        </Button>
+
+                                        <TextBlock 
+                                            FontWeight="DemiBold" 
+                                            Foreground="#2A2A2A"
+                                            materialDesign:ButtonAssist.CornerRadius="0"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="2" 
+                                            HorizontalAlignment="Left" 
+                                            Padding="0"
+                                            Margin="16 8 16 0"
+                                            x:Name="AprovedTextBlock">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Aproved}" Value="False">
+                                                            <Setter Property="Text" Value="No aprovado"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Aproved}" Value="True">
+                                                            <Setter Property="Text" Value="Aprobado"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                        <TextBlock 
+                                            Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                            Foreground="#2A2A2A"
+                                            Grid.ColumnSpan="1"
+                                            Grid.Row="1"
+                                            HorizontalAlignment="Left" 
+                                            Margin="16 8 16 4" 
+                                            TextAlignment="Left"
+                                            TextWrapping="WrapWithOverflow" 
+                                            VerticalAlignment="Bottom" 
+                                            x:Name="DateTextBlock"
+                                            Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}">
+                                        </TextBlock>
+                                       
+                                        <Button
+                                            Click="AproveButtonButton_Click"
+                                            x:Name="AproveButton"
+                                            Content="Aprovar"
+                                            Grid.Row="3"
+                                            Margin="16 16 16 16"
+                                            VerticalContentAlignment="Center" 
+                                            HorizontalAlignment="Left">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource MaterialDesignRaisedAccentButton}" TargetType="{x:Type Button}">
+                                                    <Setter Property="FontSize" Value="14"/>
+                                                    <Setter Property="Foreground" Value="#FFF5F5"/>
+                                                    <Setter Property="Background" Value="#004AAD"/>
+                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+
+                                        <Button
+                                            Click="RejectButtonButton_Click"
+                                            x:Name="RejectButton"
+                                            Content="Rechazar"
+                                            Grid.Row="4"
+                                            Margin="16 10 16 16"
+                                            VerticalContentAlignment="Center" 
+                                            HorizontalAlignment="Left">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource MaterialDesignRaisedAccentButton}" TargetType="{x:Type Button}">
+                                                    <Setter Property="FontSize" Value="14"/>
+                                                    <Setter Property="Foreground" Value="#FFF5F5"/>
+                                                    <Setter Property="Background" Value="Red"/>
+                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -39,12 +39,28 @@
                 <Setter Property="Foreground" Value="#FFFFFF"/>
             </Style>
 
+            <Style x:Key="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}" TargetType="{x:Type TextBlock}">
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                <Setter Property="materialDesign:HintAssist.Foreground" Value="#004AAD"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="ScrollViewer.BorderBrush" Value="#FFFFFF"/>
+            </Style>
+
             <Style x:Key="TextBoxAlternative" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
                 <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
                 <Setter Property="materialDesign:HintAssist.Foreground" Value="#FFFFFF"/>
                 <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#FFFFFF"/>
                 <Setter Property="BorderBrush" Value="#B5B4B4"/>
-                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+
+            <Style x:Key="TextBoxAlternativeBlack" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                <Setter Property="materialDesign:HintAssist.Foreground" Value="#004AAD"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
+                <Setter Property="BorderBrush" Value="#B5B4B4"/>
+                <Setter Property="Foreground" Value="Black"/>
             </Style>
 
             <Style x:Key="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}" TargetType="{x:Type PasswordBox}">
@@ -61,6 +77,14 @@
                 <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
                 <Setter Property="BorderBrush" Value="#FFFFFF"/>
                 <Setter Property="Foreground" Value="#FFFFFF"/>
+            </Style>
+
+            <Style x:Key="ComboBoxAlternativeBlack" BasedOn="{StaticResource MaterialDesignComboBox}" TargetType="{x:Type ComboBox}">
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True"/>
+                <Setter Property="materialDesign:HintAssist.Foreground" Value="#004AAD"/>
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#004AAD"/>
+                <Setter Property="BorderBrush" Value="#B5B4B4"/>
+                <Setter Property="Foreground" Value="Black"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

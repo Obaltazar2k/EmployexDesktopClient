@@ -37,11 +37,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
+    <Reference Include="ControlzEx, Version=5.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>packages\ControlzEx.5.0.0\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialDesignThemes.4.0.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignColors, Version=2.0.1.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.2.0.1\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.1.0.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.4.1.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -50,9 +56,22 @@
       <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,10 +94,61 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApiClient.cs" />
-    <Compile Include="Models\JobOffer.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="View\AptitudesSelection.xaml.cs">
-      <DependentUpon>AptitudesSelection.xaml</DependentUpon>
+    <Compile Include="Api\AplicationsApi.cs" />
+    <Compile Include="Api\CertificationApi.cs" />
+    <Compile Include="Api\EducationApi.cs" />
+    <Compile Include="Api\GeneralUserApi.cs" />
+    <Compile Include="Api\IndependientUserApi.cs" />
+    <Compile Include="Api\JobOfferApi.cs" />
+    <Compile Include="Api\LaboralExperienceApi.cs" />
+    <Compile Include="Api\OrganizationUserApi.cs" />
+    <Compile Include="Api\SectionApi.cs" />
+    <Compile Include="Client\ApiClient.cs" />
+    <Compile Include="Client\ApiException.cs" />
+    <Compile Include="Client\ApiResponse.cs" />
+    <Compile Include="Client\Configuration.cs" />
+    <Compile Include="Client\ExceptionFactory.cs" />
+    <Compile Include="Client\GlobalConfiguration.cs" />
+    <Compile Include="Client\IApiAccessor.cs" />
+    <Compile Include="Client\IReadableConfiguration.cs" />
+    <Compile Include="Client\SwaggerDateConverter.cs" />
+    <Compile Include="Model\Aplication.cs" />
+    <Compile Include="Model\Certification.cs" />
+    <Compile Include="Model\Education.cs" />
+    <Compile Include="Model\IndependientUser.cs" />
+    <Compile Include="Model\JobCategory.cs" />
+    <Compile Include="Model\JobOffer.cs" />
+    <Compile Include="Model\LaboralExperience.cs" />
+    <Compile Include="Model\Media.cs" />
+    <Compile Include="Model\OrganizationUser.cs" />
+    <Compile Include="Model\Section.cs" />
+    <Compile Include="Model\Sector.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Utilities\ByteToImageConverter.cs" />
+    <Compile Include="Utilities\Encrypt.cs" />
+    <Compile Include="Utilities\FieldsVerificator.cs" />
+    <Compile Include="Utilities\IsEnabledConverter.cs" />
+    <Compile Include="Utilities\Restarter.cs" />
+    <Compile Include="View\AddCertification.xaml.cs">
+      <DependentUpon>AddCertification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddEducation.xaml.cs">
+      <DependentUpon>AddEducation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddLaboralExperience.xaml.cs">
+      <DependentUpon>AddLaboralExperience.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSection.xaml.cs">
+      <DependentUpon>AddSection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ApplicantsConsult.xaml.cs">
+      <DependentUpon>ApplicantsConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditIndependientProfile.xaml.cs">
+      <DependentUpon>EditIndependientProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditOrganizationProfile.xaml.cs">
+      <DependentUpon>EditOrganizationProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -89,16 +159,52 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OrganizationProfileConsult.xaml.cs">
+      <DependentUpon>OrganizationProfileConsult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OrganizationRegister.xaml.cs">
       <DependentUpon>OrganizationRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IndependientProfileConsult.xaml.cs">
+      <DependentUpon>IndependientProfileConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PublishedJobOffers.xaml.cs">
+      <DependentUpon>PublishedJobOffers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PublishJobOffer.xaml.cs">
+      <DependentUpon>PublishJobOffer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegisterSelection.xaml.cs">
       <DependentUpon>RegisterSelection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TestAPI.xaml.cs">
-      <DependentUpon>TestAPI.xaml</DependentUpon>
+    <Compile Include="View\ValidateUser.xaml.cs">
+      <DependentUpon>ValidateUser.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\AptitudesSelection.xaml">
+    <Page Include="View\AddCertification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddEducation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddLaboralExperience.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ApplicantsConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditIndependientProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditOrganizationProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,7 +232,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\OrganizationProfileConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\OrganizationRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IndependientProfileConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PublishedJobOffers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PublishJobOffer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,7 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TestAPI.xaml">
+    <Page Include="View\ValidateUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +279,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="docs\Aplication.md" />
+    <None Include="docs\AplicationsApi.md" />
+    <None Include="docs\Certification.md" />
+    <None Include="docs\Education.md" />
+    <None Include="docs\EducationApi.md" />
+    <None Include="docs\GeneralUserApi.md" />
+    <None Include="docs\IndependientUser.md" />
+    <None Include="docs\IndependientUserApi.md" />
+    <None Include="docs\JobCategory.md" />
+    <None Include="docs\JobOffer.md" />
+    <None Include="docs\JobOfferApi.md" />
+    <None Include="docs\LaboralExperience.md" />
+    <None Include="docs\LaboralExperienceApi.md" />
+    <None Include="docs\Media.md" />
+    <None Include="docs\OrganizationUser.md" />
+    <None Include="docs\OrganizationUserApi.md" />
+    <None Include="docs\Section.md" />
+    <None Include="docs\Sector.md" />
+    <None Include="docs\User.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -172,12 +313,18 @@
   <ItemGroup>
     <Resource Include="Utilities\Images\Logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\Images\defaultAvatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\Images\defaultOrganizationAvatar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
+  <Import Project="packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets'))" />
   </Target>
 </Project>
