@@ -58,7 +58,7 @@ namespace Employex.View
             catch (ApiException ex)
             {
                 if (ex.ErrorCode.Equals(404))
-                    CustomMessageBox.Show("No hay más ofertas que mostrar");
+                    CustomMessageBox.Show("No hay ofertas que mostrar");
             }
         }
 

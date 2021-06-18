@@ -18,7 +18,7 @@ namespace Employex
 
         ApiClient()
         {
-            client.BaseAddress = new Uri("http://localhost:64195/");
+            client.BaseAddress = new Uri("http://104.248.226.225:64195/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -37,7 +37,7 @@ namespace Employex
             return firstUser;
         }*/
 
-        readonly RestClient client = new RestClient("http://localhost:8080/ricardorzan/Employex/1.0.0");
+        readonly RestClient client = new RestClient("http://104.248.226.225:8080/ricardorzan/Employex/1.0.0");
 
         public dynamic GetFirstJobOffer()
         {

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using WPFCustomMessageBox;
 
 namespace Employex.View
@@ -55,7 +56,11 @@ namespace Employex.View
             catch (ApiException ex)
             {
                 if (ex.ErrorCode.Equals(404))
+                {
                     CustomMessageBox.Show("No hay más ofertas que mostrar");
+                    ProgressBar.Visibility = Visibility.Collapsed;
+                    ValidateButtons();
+                }
             }
         }
 
@@ -71,8 +76,9 @@ namespace Employex.View
 
         private void PubishJobOfferButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigated += NavigationService_Navigated;
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow?.ChangeView(new PublishJobOffer());
+            mainWindow?.ChangeView(new PublishJobOffer(isIndependient));
             return;
         }
 
@@ -117,10 +123,15 @@ namespace Employex.View
             else
                 PreviousPageButton.IsEnabled = true;
 
-            if (!jobOffersCollection.Count.Equals(10))
-                NextPageButton.IsEnabled = false;
+            if (jobOffersCollection != null)
+            {
+                if (!jobOffersCollection.Count.Equals(10))
+                    NextPageButton.IsEnabled = false;
+                else
+                    NextPageButton.IsEnabled = true;
+            }
             else
-                NextPageButton.IsEnabled = true;
+                NextPageButton.IsEnabled = false;
         }
 
         private void UserTextBlock_Click(object sender, RoutedEventArgs e)
@@ -158,7 +169,7 @@ namespace Employex.View
             {
                 JobOfferApi aplicationsApi = new JobOfferApi();
                 aplicationsApi.AddAplicationToJobOffer(jobOffer.Username, jobOffer.JobOfferId);
-                CustomMessageBox.Show("Se ha registrado tu oferta de trabajo");
+                CustomMessageBox.Show("Se ha registrado tu aplicación en la oferta de trabajo");
             } 
             catch(ApiException ex)
             {
@@ -191,5 +202,11 @@ namespace Employex.View
             mainWindow?.ChangeView(new PublishedJobOffers());
             return;
         }
+
+        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        {
+            //NavigationService.Refresh();
+        }
+
     }
 }

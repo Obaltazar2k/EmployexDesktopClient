@@ -42,7 +42,7 @@
             </Border.Background>
 
             <TextBlock 
-                Text="OFERTAS PUBLICADAS" 
+                Text="CONSULTAR APLICANTES" 
                 HorizontalAlignment="Center"
                 Foreground="#FFFFFF"
                 FontWeight="Bold"

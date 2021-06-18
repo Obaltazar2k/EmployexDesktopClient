@@ -21,9 +21,11 @@ namespace Employex.View
     {
         OpenFileDialog dialog;
         List<Media> imagesList = new List<Media>();
+        public bool isIndependient { get; set; }
 
-        public PublishJobOffer()
+        public PublishJobOffer(bool isIndependient)
         {
+            this.isIndependient = isIndependient;
             InitializeComponent();
             FullCombobox();
         }
@@ -42,22 +44,25 @@ namespace Employex.View
                 JobOffer jobOffer = new JobOffer(job: JobTextBox.Text, description: DescriptionTextBox.Text, jobCategory: (JobCategory)JobCategoryCombobox.SelectedItem, media: imagesList);
                 jobOfferApi.AddJobOffer(jobOffer);
                 CustomMessageBox.ShowOK("La oferta de trabajo ha sido publicada con éxito.", "Publicación exitosa", "Aceptar");
-                BackIcon_Clicked(new object(),new RoutedEventArgs());
-            
+                BackIcon_Clicked(new object(), new RoutedEventArgs());
+
             }
             catch (ApiException ex)
             {
                 if (ex.ErrorCode == 400) { }
-                    //CustomMessageBox.ShowOK("Ya existe un usuario con el correo " + EmailTextBox.Text, "Usuario existente", "Aceptar");
+                //CustomMessageBox.ShowOK("Ya existe un usuario con el correo " + EmailTextBox.Text, "Usuario existente", "Aceptar");
             }
         }
 
         private void BackIcon_Clicked(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Home(isIndependient));
+            /*
             if (NavigationService.CanGoBack)
                 NavigationService.GoBack();
             else
                 CustomMessageBox.ShowOK("No hay entrada a la cual volver.", "Error al navegar hacía atrás", "Aceptar");
+            */
         }
 
         private void AddImageButton_Click(object sender, RoutedEventArgs e)
@@ -79,7 +84,7 @@ namespace Employex.View
                 }
                 else
                 {
-                    if(image2.Source == null)
+                    if (image2.Source == null)
                     {
                         image2.Source = new BitmapImage(fileUri);
                         image2.Visibility = Visibility.Visible;
@@ -100,19 +105,26 @@ namespace Employex.View
                     }
                 }
             }
-
-            Media image = new Media();
-            Stream myStream = null;
-            myStream = dialog.OpenFile();
-            if (myStream != null)
+            try
             {
-                using (MemoryStream ms = new MemoryStream())
+                Media image = new Media();
+                Stream myStream = null;
+                myStream = dialog.OpenFile();
+                if (myStream != null)
                 {
-                    myStream.CopyTo(ms);
-                    byte[] imageFile = ms.ToArray();
-                    image.File = imageFile;
-                    imagesList.Add(image);
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        myStream.CopyTo(ms);
+                        byte[] imageFile = ms.ToArray();
+                        image.File = imageFile;
+                        imagesList.Add(image);
+                    }
                 }
+
+            }
+            catch (InvalidOperationException)
+            {
+                //
             }
         }
     }
